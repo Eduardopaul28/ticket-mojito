@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="manifest.json" />
+  <title>Tickets Bebidas</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f7f7f7;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 150px);
+      gap: 1rem;
+    }
+    button {
+      padding: 1.5rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    button:active {
+      background-color: #388e3c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Emisor de Tickets</h1>
+  <div class="button-grid">
+    <button onclick="printTicket('Mojito')">Mojito</button>
+    <button onclick="printTicket('Refresco')">Refresco</button>
+    <button onclick="printTicket('Agua')">Agua</button>
+    <button onclick="printTicket('Perritos')">Perritos</button>
+    <button onclick="printTicket('Arepas')">Arepas</button>
+    <button onclick="printTicket('Tequeños')">Tequeños</button>
+  </div>
+
+  <script>
+    function printTicket(product) {
+      const text = `${product}\n\n`;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      window.open(`intent:${url}#Intent;package=ru.a402d.rawbtprinter;scheme=file;end`);
+    }
+  </script>
+</body>
+</html>
+    
