@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,14 +20,25 @@
     h1 {
       margin-bottom: 1rem;
     }
+    .section {
+      margin-bottom: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      text-align: center;
+    }
     .button-grid {
       display: grid;
-      grid-template-columns: repeat(2, 150px);
-      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
     }
     button {
-      padding: 1.5rem;
-      font-size: 1.2rem;
+      padding: 1rem;
+      font-size: 1rem;
       border: none;
       border-radius: 10px;
       background-color: #4caf50;
@@ -39,27 +49,117 @@
     button:active {
       background-color: #388e3c;
     }
+    #total {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: #333;
+    }
+    #ticket-list {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #333;
+      white-space: pre-line;
+      text-align: center;
+    }
+    #reset, #print {
+      margin-top: 1rem;
+      padding: 1rem;
+      width: 90%;
+    }
+    #reset {
+      background-color: #f44336;
+    }
+    #print {
+      background-color: #2196f3;
+    }
+    #reset:active {
+      background-color: #d32f2f;
+    }
+    #print:active {
+      background-color: #1976d2;
+    }
   </style>
 </head>
 <body>
-  <h1>Emisor de Tickets</h1>
-  <div class="button-grid">
-    <button onclick="printTicket('Mojito')">Mojito</button>
-    <button onclick="printTicket('Refresco')">Refresco</button>
-    <button onclick="printTicket('Agua')">Agua</button>
-    <button onclick="printTicket('Perritos')">Perritos</button>
-    <button onclick="printTicket('Arepas')">Arepas</button>
-    <button onclick="printTicket('Tequeños')">Tequeños</button>
+  <h1>Los Chamos - Tickets</h1>
+
+  <div class="section">
+    <div class="section-title">Entrantes</div>
+    <div class="button-grid">
+      <button onclick="addProduct('Tequeños', 9.99)">Tequeños - 9,99€</button>
+      <button onclick="addProduct('Patatas Locas XL', 11.99)">Patatas Locas XL - 11,99€</button>
+      <button onclick="addProduct('Alitas de pollo BBQ', 14.99)">Alitas BBQ - 14,99€</button>
+      <button onclick="addProduct('Tajadas de plátano', 7.99)">Tajadas - 7,99€</button>
+    </div>
   </div>
 
+  <div class="section">
+    <div class="section-title">Arepas</div>
+    <div class="button-grid">
+      <button onclick="addProduct('Arepa Pelua/Sifrina', 8.99)">Pelua/Sifrina - 8,99€</button>
+      <button onclick="addProduct('Arepa Reina Pepiada/Popular', 7.99)">Reina/Popular - 7,99€</button>
+      <button onclick="addProduct('Arepa Los Chamos/Veguis', 9.99)">Chamos/Veguis - 9,99€</button>
+      <button onclick="addProduct('Arepa Pabellón/Chevere/Mixta', 11.99)">Pabellón/etc - 11,99€</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Patacones</div>
+    <div class="button-grid">
+      <button onclick="addProduct('Patacón Mortal', 14.99)">Mortal - 14,99€</button>
+      <button onclick="addProduct('Patacón Los Chamos', 11.99)">Los Chamos - 11,99€</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Perritos</div>
+    <div class="button-grid">
+      <button onclick="addProduct('Perrito Venezolano', 4.99)">Venezolano - 4,99€</button>
+      <button onclick="addProduct('Perrito Sencillo', 3.5)">Sencillo - 3,50€</button>
+      <button onclick="addProduct('Perrito Los Chamos', 6.5)">Los Chamos - 6,50€</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Otros</div>
+    <div class="button-grid">
+      <button onclick="addProduct('Hamburguesa Los Chamos', 11.99)">Hamburguesa - 11,99€</button>
+      <button onclick="addProduct('Malta Maltin/Pony', 2.99)">Malta - 2,99€</button>
+      <button onclick="addProduct('Frescolita', 2.99)">Frescolita - 2,99€</button>
+    </div>
+  </div>
+
+  <div id="total">Total: 0€</div>
+  <div id="ticket-list"></div>
+  <button id="print" onclick="generateTicket()">Imprimir Ticket</button>
+  <button id="reset" onclick="resetTicket()">Reiniciar Ticket</button>
+
   <script>
-    function printTicket(product) {
-      const text = `${product}\n\n`;
+    let total = 0;
+    let ticketItems = [];
+
+    function addProduct(name, price) {
+      total += price;
+      ticketItems.push(`${name} - ${price.toFixed(2)}€`);
+      document.getElementById("total").innerText = `Total: ${total.toFixed(2)}€`;
+      document.getElementById("ticket-list").innerText = ticketItems.join("\n");
+    }
+
+    function generateTicket() {
+      if (ticketItems.length === 0) return;
+      let text = "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
+      text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra`;
       const blob = new Blob([text], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       window.open(`intent:${url}#Intent;package=ru.a402d.rawbtprinter;scheme=file;end`);
     }
+
+    function resetTicket() {
+      total = 0;
+      ticketItems = [];
+      document.getElementById("total").innerText = "Total: 0€";
+      document.getElementById("ticket-list").innerText = "";
+    }
   </script>
 </body>
 </html>
-    
