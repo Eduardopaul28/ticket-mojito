@@ -149,19 +149,12 @@
  function generateTicket() {
   if (ticketItems.length === 0) return;
 
-  // Texto del ticket con ESC/POS para doble tamaño
-  let header = "\x1B\x21\x30"; // doble tamaño
-  let footer = "\x1B\x21\x00"; // tamaño normal
-
-  let text = header + "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
+  let text = "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
   text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
-  text += footer;
 
-  // Codificamos texto a URI para enviar en el esquema RAWBT
   let encodedText = encodeURIComponent(text);
 
-  // Abrimos RAWBT con el texto codificado para imprimir
-  window.location.href = `rawbt://print?text=${encodedText}`;
+  window.open(`rawbt://print?text=${encodedText}`, '_self');
 }
 
   function resetTicket() {
