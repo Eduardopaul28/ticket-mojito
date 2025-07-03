@@ -20,19 +20,31 @@
       gap: 1rem;
       margin-bottom: 1rem;
     }
+    /* Tabs */
     .tab {
       padding: 0.75rem 1.5rem;
-      background: #4caf50;
       color: white;
       border-radius: 10px;
       cursor: pointer;
       user-select: none;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      /* color según tab */
     }
-    .tab.active {
-      background: #388e3c;
+    .tab[data-tab="chamos"] {
+      background: #2196f3; /* azul */
+    }
+    .tab[data-tab="chamos"].active {
+      background: #1976d2; /* azul oscuro */
       font-weight: bold;
     }
+    .tab[data-tab="perla"] {
+      background: #4caf50; /* verde */
+    }
+    .tab[data-tab="perla"].active {
+      background: #388e3c; /* verde oscuro */
+      font-weight: bold;
+    }
+
     .section {
       max-width: 400px;
       width: 90vw;
@@ -47,20 +59,25 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 0.5rem;
     }
-    button.product-btn {
-      padding: 1rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 10px;
+
+    /* Botones Los Chamos en azul */
+    #chamos button.product-btn {
+      background-color: #2196f3;
+      color: white;
+    }
+    #chamos button.product-btn:active {
+      background-color: #1976d2;
+    }
+
+    /* Botones La Perla en verde */
+    #perla button.product-btn {
       background-color: #4caf50;
       color: white;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      user-select: none;
     }
-    button.product-btn:active {
+    #perla button.product-btn:active {
       background-color: #388e3c;
     }
+
     #total {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
