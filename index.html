@@ -135,38 +135,39 @@
   <button id="print" onclick="generateTicket()">Imprimir Ticket</button>
   <button id="reset" onclick="resetTicket()">Reiniciar Ticket</button>
 
-  <script>
-    let total = 0;
-    let ticketItems = [];
+<script>
+  let total = 0;
+  let ticketItems = [];
 
-    function addProduct(name, price) {
-      total += price;
-      ticketItems.push(`${name} - ${price.toFixed(2)}€`);
-      document.getElementById("total").innerText = `Total: ${total.toFixed(2)}€`;
-      document.getElementById("ticket-list").innerText = ticketItems.join("\n");
-    }
-    
-function generateTicket() {
-  if (ticketItems.length === 0) return;
+  function addProduct(name, price) {
+    total += price;
+    ticketItems.push(`${name} - ${price.toFixed(2)}€`);
+    document.getElementById("total").innerText = `Total: ${total.toFixed(2)}€`;
+    document.getElementById("ticket-list").innerText = ticketItems.join("\n");
+  }
 
-  let text = "\x1B\x21\x30"; // ESC/POS doble tamaño (12x24)
-  text += "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
-  text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
-  text += "\x1B\x21\x00"; // Reset tamaño normal
+  function generateTicket() {
+    if (ticketItems.length === 0) return;
 
-  const blob = new Blob([text], { type: 'text/plain' });
-  const fileURL = URL.createObjectURL(blob);
+    // Texto del ticket con tamaño grande 12x24
+    let text = "\x1B\x21\x30"; // ESC/POS doble ancho y alto
+    text += "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
+    text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
+    text += "\x1B\x21\x00"; // Reset a tamaño normal
 
-  // Abrir RAWBT directamente
-  window.location.href = `intent:${fileURL}#Intent;scheme=file;package=ru.a402d.rawbtprinter;end`;
-}
+    const blob = new Blob([text], { type: 'text/plain' });
+    const fileURL = URL.createObjectURL(blob);
 
-    function resetTicket() {
-      total = 0;
-      ticketItems = [];
-      document.getElementById("total").innerText = "Total: 0€";
-      document.getElementById("ticket-list").innerText = "";
-    }
-  </script>
+    // Abrir RAWBT directamente
+    window.location.href = `intent:${fileURL}#Intent;scheme=file;package=ru.a402d.rawbtprinter;end`;
+  }
+
+  function resetTicket() {
+    total = 0;
+    ticketItems = [];
+    document.getElementById("total").innerText = "Total: 0€";
+    document.getElementById("ticket-list").innerText = "";
+  }
+</script>
 </body>
 </html>
