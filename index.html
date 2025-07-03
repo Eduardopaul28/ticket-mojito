@@ -2,24 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <link rel="manifest" href="manifest.json" />
-  <title>Tickets Bebidas</title>
+  <title>Los Chamos - Tickets</title>
   <style>
     body {
       font-family: sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: auto;
-      margin: 0;
+      justify-content: flex-start;
+      padding: 1rem;
       background: #f7f7f7;
-      padding-bottom: 2rem;
+      min-height: 100vh;
+      margin: 0;
     }
     h1 {
-      margin: 1rem 0;
+      margin-bottom: 1rem;
     }
     .section {
       margin-bottom: 1rem;
@@ -54,6 +53,7 @@
       margin-top: 1rem;
       font-size: 1.5rem;
       color: #333;
+      text-align: center;
     }
     #ticket-list {
       margin-top: 1rem;
@@ -61,23 +61,41 @@
       color: #333;
       white-space: pre-line;
       text-align: center;
+      min-height: 6rem;
     }
-    #reset, #print {
+    #reset {
       margin-top: 1rem;
       padding: 1rem;
       width: 90%;
-    }
-    #reset {
       background-color: #f44336;
-    }
-    #print {
-      background-color: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     #reset:active {
       background-color: #d32f2f;
     }
-    #print:active {
+    #printLink {
+      display: inline-block;
+      padding: 1rem;
+      background: #2196f3;
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      margin-top: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      user-select: none;
+    }
+    #printLink:active {
       background-color: #1976d2;
+    }
+    #printLink[aria-disabled="true"] {
+      pointer-events: none;
+      opacity: 0.5;
     }
   </style>
 </head>
@@ -132,38 +150,49 @@
 
   <div id="total">Total: 0€</div>
   <div id="ticket-list"></div>
-  <button id="print" onclick="generateTicket()">Imprimir Ticket</button>
+
+  <a id="printLink" href="#" aria-disabled="true">Imprimir Ticket</a>
   <button id="reset" onclick="resetTicket()">Reiniciar Ticket</button>
 
-<script>
-  let total = 0;
-  let ticketItems = [];
+  <script>
+    let total = 0;
+    let ticketItems = [];
 
-  function addProduct(name, price) {
-    total += price;
-    ticketItems.push(`${name} - ${price.toFixed(2)}€`);
-    document.getElementById("total").innerText = `Total: ${total.toFixed(2)}€`;
-    document.getElementById("ticket-list").innerText = ticketItems.join("\n");
-  }
+    function addProduct(name, price) {
+      total += price;
+      ticketItems.push(`${name} - ${price.toFixed(2)}€`);
+      document.getElementById("total").innerText = `Total: ${total.toFixed(2)}€`;
+      document.getElementById("ticket-list").innerText = ticketItems.join("\n");
+      updatePrintLink();
+    }
 
-function generateTicket() {
-  if (ticketItems.length === 0) return;
+    function updatePrintLink() {
+      const printLink = document.getElementById("printLink");
+      if (ticketItems.length === 0) {
+        printLink.href = "#";
+        printLink.setAttribute("aria-disabled", "true");
+        return;
+      }
 
-  let text = "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
-  text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
+      let text = "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
+      text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
 
-  let encodedText = encodeURIComponent(text);
+      let encodedText = encodeURIComponent(text);
 
-  const rawbtUrl = `rawbt://print?text=${encodedText}`;
+      printLink.href = `rawbt://print?text=${encodedText}`;
+      printLink.removeAttribute("aria-disabled");
+    }
 
-  // Crear enlace invisible y hacer clic
-  const a = document.createElement('a');
-  a.href = rawbtUrl;
-  a.style.display = 'none';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-</script>
+    function resetTicket() {
+      total = 0;
+      ticketItems = [];
+      document.getElementById("total").innerText = "Total: 0€";
+      document.getElementById("ticket-list").innerText = "";
+      updatePrintLink();
+    }
+
+    // Inicializar link al cargar
+    updatePrintLink();
+  </script>
 </body>
 </html>
