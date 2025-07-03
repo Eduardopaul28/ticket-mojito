@@ -264,10 +264,10 @@
       }
     }
 
-    function openRawbt(text) {
+   function openRawbt(text) {
   const encodedText = encodeURIComponent(text);
-  const url = `rawbt:=${encodedText}`;
-  window.open(url);
+  const url = `rawbt://print?text=${encodedText}`;
+  window.location.href = url;
 }
 
     function resetTickets() {
