@@ -3,267 +3,326 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tickets Los Chamos & La Perla del Caribe</title>
+  <title>Pedidos - La Perla del Caribe & Los Chamos</title>
   <style>
     body {
       font-family: sans-serif;
-      background: #f7f7f7;
       margin: 0; padding: 0;
-      display: flex; flex-direction: column; align-items: center;
+      background: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       min-height: 100vh;
     }
     h1 {
       margin: 1rem 0;
+      text-align: center;
+      color: #333;
     }
+    /* Tabs */
     .tabs {
       display: flex;
-      gap: 1rem;
+      width: 100%;
+      max-width: 420px;
+      border-bottom: 2px solid #ccc;
       margin-bottom: 1rem;
     }
     .tab {
-      padding: 0.75rem 1.5rem;
-      background: #4caf50;
-      color: white;
-      border-radius: 10px;
+      flex: 1;
+      text-align: center;
+      padding: 1rem 0;
       cursor: pointer;
+      font-weight: bold;
+      color: #666;
+      background: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      box-shadow: inset 0 -2px 0 transparent;
+      transition: all 0.2s ease;
       user-select: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     .tab.active {
-      background: #388e3c;
-      font-weight: bold;
+      color: white;
+      box-shadow: inset 0 -4px 0 white;
     }
-    .section {
-      max-width: 400px;
-      width: 90vw;
+    .tab.perla {
+      background-color: #4caf50;
+    }
+    .tab.perla.active {
+      box-shadow: inset 0 -4px 0 #388e3c;
+    }
+    .tab.chamos {
+      background-color: #2196f3;
+    }
+    .tab.chamos.active {
+      box-shadow: inset 0 -4px 0 #1769aa;
+    }
+
+    /* Content */
+    .content {
+      width: 100%;
+      max-width: 420px;
       background: white;
-      border-radius: 10px;
+      border-radius: 10px 10px 10px 10px;
       padding: 1rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      margin-bottom: 1rem;
+      min-height: 360px;
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      text-align: center;
+      color: #333;
     }
     .button-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
     button.product-btn {
       padding: 1rem;
       font-size: 1rem;
       border: none;
       border-radius: 10px;
-      background-color: #4caf50;
       color: white;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.12);
       user-select: none;
+      transition: background-color 0.2s ease;
     }
-    button.product-btn:active {
+    /* Colors for La Perla (green) */
+    #perla button.product-btn {
+      background-color: #4caf50;
+    }
+    #perla button.product-btn:active {
       background-color: #388e3c;
     }
+    /* Colors for Los Chamos (blue) */
+    #chamos button.product-btn {
+      background-color: #2196f3;
+    }
+    #chamos button.product-btn:active {
+      background-color: #1769aa;
+    }
+
+    /* Total & Ticket */
     #total {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #333;
-      font-weight: bold;
-    }
-    #ticket-lists {
-      font-family: monospace;
-      white-space: pre-line;
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      color: #222;
       text-align: center;
-      color: #333;
-      margin-bottom: 1rem;
+      font-weight: 600;
     }
-    button#print, button#reset {
-      width: 90vw;
-      max-width: 400px;
+    #ticket-list {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #444;
+      white-space: pre-line;
+      min-height: 60px;
+      text-align: center;
+    }
+    /* Control buttons */
+    .controls {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      max-width: 420px;
+      width: 100%;
+    }
+    button.control-btn {
+      flex: 1;
       padding: 1rem;
       font-size: 1.1rem;
       border: none;
       border-radius: 10px;
-      margin-bottom: 1rem;
+      color: white;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
       user-select: none;
+      transition: background-color 0.2s ease;
     }
-    button#print {
-      background-color: #2196f3;
-      color: white;
+    #print-btn {
+      background-color: #f57c00; /* Orange */
     }
-    button#print:active {
-      background-color: #1976d2;
+    #print-btn:active {
+      background-color: #bb5600;
     }
-    button#reset {
-      background-color: #f44336;
-      color: white;
+    #reset-btn {
+      background-color: #d32f2f; /* Red */
     }
-    button#reset:active {
-      background-color: #d32f2f;
+    #reset-btn:active {
+      background-color: #9a2222;
     }
   </style>
 </head>
 <body>
-
-  <h1>Tickets: Los Chamos & La Perla del Caribe</h1>
+  <h1>Pedidos - La Perla del Caribe & Los Chamos</h1>
 
   <div class="tabs">
-    <div class="tab active" data-tab="chamos">Los Chamos</div>
-    <div class="tab" data-tab="perla">La Perla del Caribe</div>
+    <div class="tab perla active" data-tab="perla">La Perla del Caribe</div>
+    <div class="tab chamos" data-tab="chamos">Los Chamos</div>
   </div>
 
-  <div id="chamos" class="section tab-content">
-    <div class="button-grid">
-      <button class="product-btn" onclick="addProduct('Tequeños', 9.99, 'chamos')">Tequeños - 9,99€</button>
-      <button class="product-btn" onclick="addProduct('Patatas Locas XL', 11.99, 'chamos')">Patatas Locas XL - 11,99€</button>
-      <button class="product-btn" onclick="addProduct('Alitas de pollo BBQ', 14.99, 'chamos')">Alitas BBQ - 14,99€</button>
-      <button class="product-btn" onclick="addProduct('Tajadas de plátano', 7.99, 'chamos')">Tajadas - 7,99€</button>
-
-      <button class="product-btn" onclick="addProduct('Arepa Pelua/Sifrina', 8.99, 'chamos')">Pelua/Sifrina - 8,99€</button>
-      <button class="product-btn" onclick="addProduct('Arepa Reina Pepiada/Popular', 7.99, 'chamos')">Reina/Popular - 7,99€</button>
-      <button class="product-btn" onclick="addProduct('Arepa Los Chamos/Veguis', 9.99, 'chamos')">Chamos/Veguis - 9,99€</button>
-      <button class="product-btn" onclick="addProduct('Arepa Pabellón/Chevere/Mixta', 11.99, 'chamos')">Pabellón/etc - 11,99€</button>
-
-      <button class="product-btn" onclick="addProduct('Patacón Mortal', 14.99, 'chamos')">Patacón Mortal - 14,99€</button>
-      <button class="product-btn" onclick="addProduct('Patacón Los Chamos', 11.99, 'chamos')">Patacón Los Chamos - 11,99€</button>
-
-      <button class="product-btn" onclick="addProduct('Perrito Venezolano', 4.99, 'chamos')">Perrito Venezolano - 4,99€</button>
-      <button class="product-btn" onclick="addProduct('Perrito Sencillo', 3.50, 'chamos')">Perrito Sencillo - 3,50€</button>
-      <button class="product-btn" onclick="addProduct('Perrito Los Chamos', 6.50, 'chamos')">Perrito Los Chamos - 6,50€</button>
-
-      <button class="product-btn" onclick="addProduct('Hamburguesa Los Chamos', 11.99, 'chamos')">Hamburguesa - 11,99€</button>
-      <button class="product-btn" onclick="addProduct('Malta Maltin/Pony', 2.99, 'chamos')">Malta - 2,99€</button>
-      <button class="product-btn" onclick="addProduct('Frescolita', 2.99, 'chamos')">Frescolita - 2,99€</button>
+  <div class="content">
+    <div id="perla" class="tab-content">
+      <div class="section-title">La Perla del Caribe</div>
+      <div class="button-grid">
+        <button class="product-btn" onclick="addProduct('Mojitos P', 7)">Mojitos P - 7€</button>
+        <button class="product-btn" onclick="addProduct('Mojitos G', 12)">Mojitos G - 12€</button>
+        <button class="product-btn" onclick="addProduct('Caipirinha P', 7)">Caipirinha P - 7€</button>
+        <button class="product-btn" onclick="addProduct('Caipirinha G', 12)">Caipirinha G - 12€</button>
+        <button class="product-btn" onclick="addProduct('Cóctel P', 7)">Cóctel P - 7€</button>
+        <button class="product-btn" onclick="addProduct('Cóctel G', 12)">Cóctel G - 12€</button>
+        <button class="product-btn" onclick="addProduct('Cóctel s/n alc P', 6)">Cóctel s/n alc P - 6€</button>
+        <button class="product-btn" onclick="addProduct('Cóctel s/n alc G', 10)">Cóctel s/n alc G - 10€</button>
+        <button class="product-btn" onclick="addProduct('Chupito', 3)">Chupito - 3€</button>
+        <button class="product-btn" onclick="addProduct('Cerveza', 3)">Cerveza - 3€</button>
+        <button class="product-btn" onclick="addProduct('Refresco', 2.5)">Refresco - 2,50€</button>
+        <button class="product-btn" onclick="addProduct('Zumo', 2.5)">Zumo - 2,50€</button>
+        <button class="product-btn" onclick="addProduct('Agua', 1.5)">Agua - 1,50€</button>
+        <button class="product-btn" onclick="addProduct('Sidra', 4)">Sidra - 4€</button>
+        <button class="product-btn" onclick="addProduct('Tinto de verano', 6)">Tinto de verano - 6€</button>
+        <button class="product-btn" onclick="addProduct('Kalimotxo', 7)">Kalimotxo - 7€</button>
+        <button class="product-btn" onclick="addProduct('Cubata', 6)">Cubata - 6€</button>
+      </div>
     </div>
-  </div>
 
-  <div id="perla" class="section tab-content" style="display:none;">
-    <div class="button-grid">
-      <button class="product-btn" onclick="addProduct('Mojito Pequeño', 7, 'perla')">Mojito Pequeño - 7€</button>
-      <button class="product-btn" onclick="addProduct('Mojito Grande', 12, 'perla')">Mojito Grande - 12€</button>
-
-      <button class="product-btn" onclick="addProduct('Caipirinha Pequeño', 7, 'perla')">Caipirinha Pequeño - 7€</button>
-      <button class="product-btn" onclick="addProduct('Caipirinha Grande', 12, 'perla')">Caipirinha Grande - 12€</button>
-
-      <button class="product-btn" onclick="addProduct('Cóctel Pequeño', 7, 'perla')">Cóctel Pequeño - 7€</button>
-      <button class="product-btn" onclick="addProduct('Cóctel Grande', 12, 'perla')">Cóctel Grande - 12€</button>
-
-      <button class="product-btn" onclick="addProduct('Cóctel sin alcohol Pequeño', 6, 'perla')">Cóctel sin alcohol Pequeño - 6€</button>
-      <button class="product-btn" onclick="addProduct('Cóctel sin alcohol Grande', 10, 'perla')">Cóctel sin alcohol Grande - 10€</button>
-
-      <button class="product-btn" onclick="addProduct('Chupito', 3, 'perla')">Chupito - 3€</button>
-      <button class="product-btn" onclick="addProduct('Cerveza', 3, 'perla')">Cerveza - 3€</button>
-      <button class="product-btn" onclick="addProduct('Refresco', 2.5, 'perla')">Refresco - 2,50€</button>
-      <button class="product-btn" onclick="addProduct('Zumo', 2.5, 'perla')">Zumo - 2,50€</button>
-      <button class="product-btn" onclick="addProduct('Agua', 1.5, 'perla')">Agua - 1,50€</button>
-      <button class="product-btn" onclick="addProduct('Sidra', 4, 'perla')">Sidra - 4€</button>
-      <button class="product-btn" onclick="addProduct('Tinto de verano', 6, 'perla')">Tinto de verano - 6€</button>
-      <button class="product-btn" onclick="addProduct('Kalimotxo', 7, 'perla')">Kalimotxo - 7€</button>
-      <button class="product-btn" onclick="addProduct('Cubata', 6, 'perla')">Cubata - 6€</button>
+    <div id="chamos" class="tab-content" style="display:none;">
+      <div class="section-title">Los Chamos</div>
+      <div class="button-grid">
+        <button class="product-btn" onclick="addProduct('Tequeños', 9.99)">Tequeños - 9,99€</button>
+        <button class="product-btn" onclick="addProduct('Patatas Locas XL', 11.99)">Patatas Locas XL - 11,99€</button>
+        <button class="product-btn" onclick="addProduct('Alitas de pollo bbq', 14.99)">Alitas BBQ - 14,99€</button>
+        <button class="product-btn" onclick="addProduct('Tajadas de plátano', 7.99)">Tajadas - 7,99€</button>
+        <button class="product-btn" onclick="addProduct('Arepas Pelua/Sifrina', 8.99)">Arepas Pelua/Sifrina - 8,99€</button>
+        <button class="product-btn" onclick="addProduct('Arepa Reina Pepiada/Popular', 7.99)">Reina Pepiada/Popular - 7,99€</button>
+        <button class="product-btn" onclick="addProduct('Arepa Los Chamos/Veguis', 9.99)">Los Chamos/Veguis - 9,99€</button>
+        <button class="product-btn" onclick="addProduct('Arepas Pabellón/Chevere/Mixta', 11.99)">Pabellón/Chevere/Mixta - 11,99€</button>
+        <button class="product-btn" onclick="addProduct('Patacon Mortal', 14.99)">Patacón Mortal - 14,99€</button>
+        <button class="product-btn" onclick="addProduct('Patacon Los Chamos', 11.99)">Patacón Los Chamos - 11,99€</button>
+        <button class="product-btn" onclick="addProduct('Perrito Venezolano', 4.99)">Perrito Venezolano - 4,99€</button>
+        <button class="product-btn" onclick="addProduct('Perrito sencillo', 3.5)">Perrito sencillo - 3,50€</button>
+        <button class="product-btn" onclick="addProduct('Perrito los Chamos', 6.5)">Perrito los Chamos - 6,50€</button>
+        <button class="product-btn" onclick="addProduct('Hamburguesa los Chamos', 11.99)">Hamburguesa - 11,99€</button>
+        <button class="product-btn" onclick="addProduct('Malta Maltin/Pony', 2.99)">Malta Maltin/Pony - 2,99€</button>
+        <button class="product-btn" onclick="addProduct('Frescolita', 2.99)">Frescolita - 2,99€</button>
+      </div>
     </div>
   </div>
 
   <div id="total">Total: 0€</div>
-  <div id="ticket-lists"></div>
-  <button id="print" onclick="printTickets()">Imprimir Tickets</button>
-  <button id="reset" onclick="resetTickets()">Reiniciar Tickets</button>
+  <div id="ticket-list"></div>
 
-  <script>
-    // Manejo de tabs
-    const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.tab-content');
+  <div class="controls">
+    <button id="print-btn" class="control-btn" onclick="generateTickets()">Imprimir Tickets</button>
+    <button id="reset-btn" class="control-btn" onclick="resetAll()">Reiniciar Tickets</button>
+  </div>
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const perlaContent = document.getElementById('perla');
+  const chamosContent = document.getElementById('chamos');
 
-        const target = tab.getAttribute('data-tab');
-        contents.forEach(c => c.style.display = c.id === target ? 'block' : 'none');
-      });
+  let ticketPerla = [];
+  let ticketChamos = [];
+  let total = 0;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      if (tab.dataset.tab === 'perla') {
+        perlaContent.style.display = 'block';
+        chamosContent.style.display = 'none';
+      } else {
+        perlaContent.style.display = 'none';
+        chamosContent.style.display = 'block';
+      }
     });
+  });
 
-    // Datos de tickets separados
-    let ticketLosChamos = [];
-    let ticketPerla = [];
-
-    function addProduct(name, price, menu) {
-      if(menu === 'chamos') {
-        ticketLosChamos.push({name, price});
-      } else if(menu === 'perla') {
-        ticketPerla.push({name, price});
-      }
-      updateDisplay();
+  function addProduct(name, price) {
+    total += price;
+    if (document.querySelector('.tab.perla').classList.contains('active')) {
+      ticketPerla.push({name, price});
+    } else {
+      ticketChamos.push({name, price});
     }
+    updateDisplay();
+  }
 
-    function updateDisplay() {
-      // Suma total ambos tickets
-      const totalChamos = ticketLosChamos.reduce((acc, p) => acc + p.price, 0);
-      const totalPerla = ticketPerla.reduce((acc, p) => acc + p.price, 0);
-      const total = totalChamos + totalPerla;
+  function updateDisplay() {
+    document.getElementById('total').textContent = 'Total: ' + total.toFixed(2) + '€';
 
-      document.getElementById('total').innerText = `Total: ${total.toFixed(2)}€`;
-
-      // Mostrar listados
-      let listText = '';
-      if(ticketLosChamos.length) {
-        listText += '--- Los Chamos ---\n';
-        ticketLosChamos.forEach(p => {
-          listText += `${p.name} - ${p.price.toFixed(2)}€\n`;
-        });
-        listText += `Subtotal Los Chamos: ${totalChamos.toFixed(2)}€\n\n`;
-      }
-      if(ticketPerla.length) {
-        listText += '--- La Perla del Caribe ---\n';
-        ticketPerla.forEach(p => {
-          listText += `${p.name} - ${p.price.toFixed(2)}€\n`;
-        });
-        listText += `Subtotal La Perla: ${totalPerla.toFixed(2)}€\n\n`;
-      }
-      document.getElementById('ticket-lists').innerText = listText;
-    }
-
-    function generateTicketText(items, title, subtotal) {
-      let text = `*** ${title} ***\n\n`;
-      items.forEach(p => {
-        text += `${p.name} - ${p.price.toFixed(2)}€\n`;
+    // Mostrar resumen rápido (opcional)
+    let summary = '';
+    if(ticketPerla.length) {
+      summary += 'La Perla del Caribe:\n';
+      ticketPerla.forEach(item => {
+        summary += `- ${item.name}: ${item.price.toFixed(2)}€\n`;
       });
-      text += `\nTotal: ${subtotal.toFixed(2)}€\n\nGracias por su compra!`;
-      return text;
+      summary += '\n';
+    }
+    if(ticketChamos.length) {
+      summary += 'Los Chamos:\n';
+      ticketChamos.forEach(item => {
+        summary += `- ${item.name}: ${item.price.toFixed(2)}€\n`;
+      });
+    }
+    document.getElementById('ticket-list').textContent = summary || '';
+  }
+
+  function generateTickets() {
+    // Solo generar si hay algo
+    if(ticketPerla.length === 0 && ticketChamos.length === 0) {
+      alert('No hay productos para imprimir.');
+      return;
     }
 
-    function printTickets() {
-      if(ticketLosChamos.length === 0 && ticketPerla.length === 0) return alert('No hay productos seleccionados.');
+    // Construir texto para cada ticket
+    let ticketTexts = [];
 
-      // Generar textos de tickets
-      const totalChamos = ticketLosChamos.reduce((acc, p) => acc + p.price, 0);
-      const totalPerla = ticketPerla.reduce((acc, p) => acc + p.price, 0);
-
-      // Abrir cada ticket para impresión (o abrir RAWBT con el texto)
-      if(ticketLosChamos.length) {
-        const textChamos = generateTicketText(ticketLosChamos, 'Los Chamos', totalChamos);
-        openRawbt(textChamos);
-      }
-      if(ticketPerla.length) {
-        const textPerla = generateTicketText(ticketPerla, 'La Perla del Caribe', totalPerla);
-        openRawbt(textPerla);
-      }
+    if(ticketPerla.length) {
+      let perlaText = '--- La Perla del Caribe ---\n';
+      ticketPerla.forEach(item => {
+        perlaText += `${item.name}: ${item.price.toFixed(2)}€\n`;
+      });
+      const totalPerla = ticketPerla.reduce((acc, cur) => acc + cur.price, 0);
+      perlaText += '--------------------------\n';
+      perlaText += 'Total: ' + totalPerla.toFixed(2) + '€\n';
+      ticketTexts.push(perlaText);
     }
 
-    // Función para abrir RAWBT con texto para impresión
-    function openRawbt(text) {
-      // Encode URI para texto
+    if(ticketChamos.length) {
+      let chamosText = '--- Los Chamos ---\n';
+      ticketChamos.forEach(item => {
+        chamosText += `${item.name}: ${item.price.toFixed(2)}€\n`;
+      });
+      const totalChamos = ticketChamos.reduce((acc, cur) => acc + cur.price, 0);
+      chamosText += '----------------\n';
+      chamosText += 'Total: ' + totalChamos.toFixed(2) + '€\n';
+      ticketTexts.push(chamosText);
+    }
+
+    // Enviar a impresión abriendo cada ticket en ventana
+    ticketTexts.forEach(text => {
+      // Codificar URI para el texto
       const encodedText = encodeURIComponent(text);
-      // Construir URL para RAWBT con parámetro print?text=
-      const url = `rawbt://print?text=${encodedText}`;
-      window.location.href = url;
-    }
+      // Abrir ventana para imprimir
+      window.open(`/print?text=${encodedText}`, '_blank', 'width=300,height=400');
+    });
+  }
 
-    function resetTickets() {
-      ticketLosChamos = [];
+  function resetAll() {
+    if(confirm('¿Seguro que quieres reiniciar todos los tickets y el total?')) {
       ticketPerla = [];
+      ticketChamos = [];
+      total = 0;
       updateDisplay();
     }
-
-  </script>
+  }
+</script>
 </body>
 </html>
