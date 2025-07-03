@@ -146,21 +146,23 @@
     document.getElementById("ticket-list").innerText = ticketItems.join("\n");
   }
 
-  function generateTicket() {
-    if (ticketItems.length === 0) return;
+ function generateTicket() {
+  if (ticketItems.length === 0) return;
 
-    // Texto del ticket con tamaño grande 12x24
-    let text = "\x1B\x21\x30"; // ESC/POS doble ancho y alto
-    text += "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
-    text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
-    text += "\x1B\x21\x00"; // Reset a tamaño normal
+  // Texto del ticket con ESC/POS para doble tamaño
+  let header = "\x1B\x21\x30"; // doble tamaño
+  let footer = "\x1B\x21\x00"; // tamaño normal
 
-    const blob = new Blob([text], { type: 'text/plain' });
-    const fileURL = URL.createObjectURL(blob);
+  let text = header + "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
+  text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
+  text += footer;
 
-    // Abrir RAWBT directamente
-    window.location.href = `intent:${fileURL}#Intent;scheme=file;package=ru.a402d.rawbtprinter;end`;
-  }
+  // Codificamos texto a URI para enviar en el esquema RAWBT
+  let encodedText = encodeURIComponent(text);
+
+  // Abrimos RAWBT con el texto codificado para imprimir
+  window.location.href = `rawbt://print?text=${encodedText}`;
+}
 
   function resetTicket() {
     total = 0;
