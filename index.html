@@ -171,4 +171,16 @@
       let encodedText = encodeURIComponent(text);
 
       // Esto abre RAWBT app para imprimir en Android
-      window.location.href
+      window.location.href = `rawbt://print?text=${encodedText}`;
+    }
+
+    function resetTicket() {
+      total = 0;
+      ticketItems = [];
+      document.getElementById("total").innerText = "Total: 0€";
+      document.getElementById("ticket-list").innerText = "";
+      document.getElementById("print").disabled = true;
+    }
+  </script>
+</body>
+</html>
