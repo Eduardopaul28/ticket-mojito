@@ -265,10 +265,10 @@
     }
 
     function openRawbt(text) {
-      const encodedText = encodeURIComponent(text);
-      const url = `rawbt://print?text=${encodedText}`;
-      window.location.href = url;
-    }
+  const encodedText = encodeURIComponent(text);
+  const url = `rawbt://print?text=${encodedText}`;
+  window.open(url);
+}
 
     function resetTickets() {
       ticketLosChamos = [];
