@@ -20,31 +20,19 @@
       gap: 1rem;
       margin-bottom: 1rem;
     }
-    /* Tabs */
     .tab {
       padding: 0.75rem 1.5rem;
+      background: #4caf50;
       color: white;
       border-radius: 10px;
       cursor: pointer;
       user-select: none;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      /* color según tab */
     }
-    .tab[data-tab="chamos"] {
-      background: #2196f3; /* azul */
-    }
-    .tab[data-tab="chamos"].active {
-      background: #1976d2; /* azul oscuro */
+    .tab.active {
+      background: #388e3c;
       font-weight: bold;
     }
-    .tab[data-tab="perla"] {
-      background: #4caf50; /* verde */
-    }
-    .tab[data-tab="perla"].active {
-      background: #388e3c; /* verde oscuro */
-      font-weight: bold;
-    }
-
     .section {
       max-width: 400px;
       width: 90vw;
@@ -59,22 +47,30 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 0.5rem;
     }
-
-    /* Botones Los Chamos en azul */
-    #chamos button.product-btn {
-      background-color: #2196f3;
+    button.product-btn {
+      padding: 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      user-select: none;
       color: white;
     }
-    #chamos button.product-btn:active {
+
+    /* Botones Los Chamos - azul */
+    button.product-btn.chamos-btn {
+      background-color: #2196f3;
+    }
+    button.product-btn.chamos-btn:active {
       background-color: #1976d2;
     }
 
-    /* Botones La Perla en verde */
-    #perla button.product-btn {
+    /* Botones La Perla - verde */
+    button.product-btn.perla-btn {
       background-color: #4caf50;
-      color: white;
     }
-    #perla button.product-btn:active {
+    button.product-btn.perla-btn:active {
       background-color: #388e3c;
     }
 
@@ -130,52 +126,52 @@
 
   <div id="chamos" class="section tab-content">
     <div class="button-grid">
-      <button class="product-btn" onclick="addProduct('Tequeños', 9.99, 'chamos')">Tequeños - 9,99€</button>
-      <button class="product-btn" onclick="addProduct('Patatas Locas XL', 11.99, 'chamos')">Patatas Locas XL - 11,99€</button>
-      <button class="product-btn" onclick="addProduct('Alitas de pollo BBQ', 14.99, 'chamos')">Alitas BBQ - 14,99€</button>
-      <button class="product-btn" onclick="addProduct('Tajadas de plátano', 7.99, 'chamos')">Tajadas - 7,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Tequeños', 9.99, 'chamos')">Tequeños - 9,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Patatas Locas XL', 11.99, 'chamos')">Patatas Locas XL - 11,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Alitas de pollo BBQ', 14.99, 'chamos')">Alitas BBQ - 14,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Tajadas de plátano', 7.99, 'chamos')">Tajadas - 7,99€</button>
 
-      <button class="product-btn" onclick="addProduct('Arepa Pelua/Sifrina', 8.99, 'chamos')">Arepas Pelua/Sifrina - 8,99€</button>
-      <button class="product-btn" onclick="addProduct('Arepa Reina Pepiada/Popular', 7.99, 'chamos')">Arepas Reina/Popular - 7,99€</button>
-      <button class="product-btn" onclick="addProduct('Arepa Los Chamos/Veguis', 9.99, 'chamos')">Arepas Chamos/Veguis - 9,99€</button>
-      <button class="product-btn" onclick="addProduct('Arepa Pabellón/Chevere/Mixta', 11.99, 'chamos')">Arepas Pabellón/etc - 11,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Pelua/Sifrina', 8.99, 'chamos')">Arepas Pelua/Sifrina - 8,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Reina Pepiada/Popular', 7.99, 'chamos')">Arepas Reina/Popular - 7,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Los Chamos/Veguis', 9.99, 'chamos')">Arepas Chamos/Veguis - 9,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Pabellón/Chevere/Mixta', 11.99, 'chamos')">Arepas Pabellón/etc - 11,99€</button>
 
-      <button class="product-btn" onclick="addProduct('Patacón Mortal', 14.99, 'chamos')">Patacón Mortal - 14,99€</button>
-      <button class="product-btn" onclick="addProduct('Patacón Los Chamos', 11.99, 'chamos')">Patacón Los Chamos - 11,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Patacón Mortal', 14.99, 'chamos')">Patacón Mortal - 14,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Patacón Los Chamos', 11.99, 'chamos')">Patacón Los Chamos - 11,99€</button>
 
-      <button class="product-btn" onclick="addProduct('Perrito Venezolano', 4.99, 'chamos')">Perrito Venezolano - 4,99€</button>
-      <button class="product-btn" onclick="addProduct('Perrito Sencillo', 3.50, 'chamos')">Perrito Sencillo - 3,50€</button>
-      <button class="product-btn" onclick="addProduct('Perrito Los Chamos', 6.50, 'chamos')">Perrito Los Chamos - 6,50€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Perrito Venezolano', 4.99, 'chamos')">Perrito Venezolano - 4,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Perrito Sencillo', 3.50, 'chamos')">Perrito Sencillo - 3,50€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Perrito Los Chamos', 6.50, 'chamos')">Perrito Los Chamos - 6,50€</button>
 
-      <button class="product-btn" onclick="addProduct('Hamburguesa Los Chamos', 11.99, 'chamos')">Hamburguesa - 11,99€</button>
-      <button class="product-btn" onclick="addProduct('Malta Maltin/Pony', 2.99, 'chamos')">Malta - 2,99€</button>
-      <button class="product-btn" onclick="addProduct('Frescolita', 2.99, 'chamos')">Frescolita - 2,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Los Chamos', 11.99, 'chamos')">Hamburguesa - 11,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Malta Maltin/Pony', 2.99, 'chamos')">Malta - 2,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Frescolita', 2.99, 'chamos')">Frescolita - 2,99€</button>
     </div>
   </div>
 
   <div id="perla" class="section tab-content" style="display:none;">
     <div class="button-grid">
-      <button class="product-btn" onclick="addProduct('Mojito Pequeño', 7, 'perla')">Mojito P - 7€</button>
-      <button class="product-btn" onclick="addProduct('Mojito Grande', 12, 'perla')">Mojito G - 12€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Mojito Pequeño', 7, 'perla')">Mojito P - 7€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Mojito Grande', 12, 'perla')">Mojito G - 12€</button>
 
-      <button class="product-btn" onclick="addProduct('Caipirinha Pequeño', 7, 'perla')">Caipirinha P - 7€</button>
-      <button class="product-btn" onclick="addProduct('Caipirinha Grande', 12, 'perla')">Caipirinha G - 12€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Caipirinha Pequeño', 7, 'perla')">Caipirinha P - 7€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Caipirinha Grande', 12, 'perla')">Caipirinha G - 12€</button>
 
-      <button class="product-btn" onclick="addProduct('Cóctel Pequeño', 7, 'perla')">Cóctel P - 7€</button>
-      <button class="product-btn" onclick="addProduct('Cóctel Grande', 12, 'perla')">Cóctel G - 12€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Cóctel Pequeño', 7, 'perla')">Cóctel P - 7€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Cóctel Grande', 12, 'perla')">Cóctel G - 12€</button>
 
-      <button class="product-btn" onclick="addProduct('Cóctel sin alcohol Pequeño', 6, 'perla')">Cóctel sn alc P - 6€</button>
-      <button class="product-btn" onclick="addProduct('Cóctel sin alcohol Grande', 10, 'perla')">Cóctel sn alc G - 10€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Cóctel sin alcohol Pequeño', 6, 'perla')">Cóctel sn alc P - 6€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Cóctel sin alcohol Grande', 10, 'perla')">Cóctel sn alc G - 10€</button>
 
-      <button class="product-btn" onclick="addProduct('Chupito', 3, 'perla')">Chupito - 3€</button>
-      <button class="product-btn" onclick="addProduct('Cerveza', 3, 'perla')">Cerveza - 3€</button>
-      <button class="product-btn" onclick="addProduct('Refresco', 2.5, 'perla')">Refresco - 2,50€</button>
-      <button class="product-btn" onclick="addProduct('Zumo', 2.5, 'perla')">Zumo - 2,50€</button>
-      <button class="product-btn" onclick="addProduct('Agua', 1.5, 'perla')">Agua - 1,50€</button>
-      <button class="product-btn" onclick="addProduct('Sidra', 4, 'perla')">Sidra - 4€</button>
-      <button class="product-btn" onclick="addProduct('Tinto de verano', 6, 'perla')">Tinto de verano - 6€</button>
-      <button class="product-btn" onclick="addProduct('Kalimotxo', 7, 'perla')">Kalimotxo - 7€</button>
-      <button class="product-btn" onclick="addProduct('Cubata', 6, 'perla')">Cubata - 6€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Chupito', 3, 'perla')">Chupito - 3€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Cerveza', 3, 'perla')">Cerveza - 3€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Refresco', 2.5, 'perla')">Refresco - 2,50€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Zumo', 2.5, 'perla')">Zumo - 2,50€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Agua', 1.5, 'perla')">Agua - 1,50€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Sidra', 4, 'perla')">Sidra - 4€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Tinto de verano', 6, 'perla')">Tinto de verano - 6€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Kalimotxo', 7, 'perla')">Kalimotxo - 7€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Cubata', 6, 'perla')">Cubata - 6€</button>
     </div>
   </div>
 
