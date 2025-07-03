@@ -145,31 +145,21 @@
       document.getElementById("total").innerText = `Total: ${total.toFixed(2)}€`;
       document.getElementById("ticket-list").innerText = ticketItems.join("\n");
     }
+    
+function generateTicket() {
+  if (ticketItems.length === 0) return;
 
-    function generateTicket() {
-      if (ticketItems.length === 0) return;
-      let text = "📜 Ticket Los Chamos 📜\n\n";
-      text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra`;
+  let text = "\x1B\x21\x30"; // ESC/POS doble tamaño (12x24)
+  text += "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
+  text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
+  text += "\x1B\x21\x00"; // Reset tamaño normal
 
-      const newWindow = window.open('', '_blank');
-      newWindow.document.write(`
-        <html>
-          <head>
-            <title>Ticket</title>
-            <style>
-              body {
-                font-family: monospace;
-                white-space: pre;
-                padding: 1rem;
-                font-size: 1.2rem;
-              }
-            </style>
-          </head>
-          <body>${text.replace(/\n/g, "<br>")}</body>
-        </html>
-      `);
-      newWindow.document.close();
-    }
+  const blob = new Blob([text], { type: 'text/plain' });
+  const fileURL = URL.createObjectURL(blob);
+
+  // Abrir RAWBT directamente
+  window.location.href = `intent:${fileURL}#Intent;scheme=file;package=ru.a402d.rawbtprinter;end`;
+}
 
     function resetTicket() {
       total = 0;
