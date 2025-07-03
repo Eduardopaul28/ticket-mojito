@@ -1,205 +1,251 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pedidos Los Chamos / La Perla del Caribe</title>
-<style>
-  body {
-    font-family: sans-serif;
-    margin: 0; padding: 0;
-    background: #f7f7f7;
-  }
-  header {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  button.tab {
-    padding: 1rem 2rem;
-    margin: 0 0.5rem;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    color: white;
-  }
-  button#tab-perla {
-    background-color: #2196f3; /* azul */
-  }
-  button#tab-chamos {
-    background-color: #4caf50; /* verde */
-  }
-  button.tab.active {
-    box-shadow: 0 0 10px 2px #00000033;
-  }
-  .menu {
-    display: none;
-    max-width: 400px;
-    margin: 0 auto 1rem auto;
-  }
-  .menu.active {
-    display: block;
-  }
-  .button-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-  }
-  .button-grid button {
-    padding: 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-  }
-  #perla .button-grid button {
-    background-color: #2196f3; /* azul */
-  }
-  #chamos .button-grid button {
-    background-color: #4caf50; /* verde */
-  }
-  #total {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-top: 1rem;
-  }
-  #print, #reset {
-    display: block;
-    margin: 1rem auto;
-    padding: 1rem;
-    width: 90%;
-    max-width: 400px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  #print {
-    background-color: #2196f3;
-    color: white;
-  }
-  #reset {
-    background-color: #f44336;
-    color: white;
-  }
-  #print:active {
-    background-color: #1976d2;
-  }
-  #reset:active {
-    background-color: #d32f2f;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tickets Los Chamos & La Perla del Caribe</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f7f7f7;
+      margin: 0; padding: 0;
+      display: flex; flex-direction: column; align-items: center;
+      min-height: 100vh;
+    }
+    h1 {
+      margin: 1rem 0;
+    }
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      padding: 0.75rem 1.5rem;
+      background: #4caf50;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+    .tab.active {
+      background: #388e3c;
+      font-weight: bold;
+    }
+    /* Pestaña Chamos azul */
+    .tab[data-tab="chamos"] {
+      background: #2196f3;
+    }
+    .tab[data-tab="chamos"].active {
+      background: #1976d2;
+      font-weight: bold;
+    }
+
+    .section {
+      max-width: 400px;
+      width: 90vw;
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+    /* Botones Perla (verde) */
+    #perla .product-btn {
+      background-color: #4caf50;
+      color: white;
+    }
+    #perla .product-btn:active {
+      background-color: #388e3c;
+    }
+    /* Botones Chamos (azul) */
+    #chamos .product-btn {
+      background-color: #2196f3;
+      color: white;
+    }
+    #chamos .product-btn:active {
+      background-color: #1976d2;
+    }
+
+    button.product-btn {
+      padding: 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      user-select: none;
+      transition: background-color 0.2s ease;
+    }
+
+    #total {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+    }
+    #ticket-lists {
+      font-family: monospace;
+      white-space: pre-line;
+      text-align: center;
+      color: #333;
+      margin-bottom: 1rem;
+      max-width: 400px;
+      width: 90vw;
+    }
+    button#print, button#reset {
+      width: 90vw;
+      max-width: 400px;
+      padding: 1rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      user-select: none;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button#print {
+      background-color: #2196f3;
+      color: white;
+    }
+    button#print:active {
+      background-color: #1976d2;
+    }
+    button#reset {
+      background-color: #f44336;
+      color: white;
+    }
+    button#reset:active {
+      background-color: #d32f2f;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <button id="tab-perla" class="tab active" onclick="showMenu('perla')">La Perla del Caribe</button>
-  <button id="tab-chamos" class="tab" onclick="showMenu('chamos')">Los Chamos</button>
-</header>
+  <h1>Tickets: La Perla del Caribe & Los Chamos</h1>
 
-<div id="perla" class="menu active">
-  <div class="button-grid">
-    <button onclick="addProduct('Mojitos P', 7)">Mojitos P - 7€</button>
-    <button onclick="addProduct('Mojitos G', 12)">Mojitos G - 12€</button>
-    <button onclick="addProduct('Caipirinha P', 7)">Caipirinha P - 7€</button>
-    <button onclick="addProduct('Caipirinha G', 12)">Caipirinha G - 12€</button>
-    <button onclick="addProduct('Cóctel P', 7)">Cóctel P - 7€</button>
-    <button onclick="addProduct('Cóctel G', 12)">Cóctel G - 12€</button>
-    <button onclick="addProduct('Cóctel s/n alc P', 6)">Cóctel s/n alc P - 6€</button>
-    <button onclick="addProduct('Cóctel s/n alc G', 10)">Cóctel s/n alc G - 10€</button>
-    <button onclick="addProduct('Chupito', 3)">Chupito - 3€</button>
-    <button onclick="addProduct('Cerveza', 3)">Cerveza - 3€</button>
-    <button onclick="addProduct('Refresco', 2.5)">Refresco - 2,50€</button>
-    <button onclick="addProduct('Zumo', 2.5)">Zumo - 2,50€</button>
-    <button onclick="addProduct('Agua', 1.5)">Agua - 1,50€</button>
-    <button onclick="addProduct('Sidra', 4)">Sidra - 4€</button>
-    <button onclick="addProduct('Tinto de verano', 6)">Tinto de verano - 6€</button>
-    <button onclick="addProduct('Kalimotxo', 7)">Kalimotxo - 7€</button>
-    <button onclick="addProduct('Cubata', 6)">Cubata - 6€</button>
+  <div class="tabs">
+    <div class="tab active" data-tab="perla">La Perla del Caribe</div>
+    <div class="tab" data-tab="chamos">Los Chamos</div>
   </div>
-</div>
 
-<div id="chamos" class="menu">
-  <div class="button-grid">
-    <button onclick="addProduct('Tequeños', 9.99)">Tequeños - 9,99€</button>
-    <button onclick="addProduct('Patatas Locas XL', 11.99)">Patatas Locas XL - 11,99€</button>
-    <button onclick="addProduct('Alitas de pollo bbq', 14.99)">Alitas BBQ - 14,99€</button>
-    <button onclick="addProduct('Tajadas de plátano', 7.99)">Tajadas - 7,99€</button>
-    <button onclick="addProduct('Arepas Pelua/Sifrina', 8.99)">Arepas Pelua/Sifrina - 8,99€</button>
-    <button onclick="addProduct('Arepa Reina Pepiada/Popular', 7.99)">Arepa Reina/Popular - 7,99€</button>
-    <button onclick="addProduct('Arepa Los Chamos/Veguis', 9.99)">Arepa Los Chamos/Veguis - 9,99€</button>
-    <button onclick="addProduct('Arepas Pabellón/Chevere/Mixta', 11.99)">Arepas Pabellón/etc - 11,99€</button>
-    <button onclick="addProduct('Patacon Mortal', 14.99)">Patacón Mortal - 14,99€</button>
-    <button onclick="addProduct('Patacon Los Chamos', 11.99)">Patacón Los Chamos - 11,99€</button>
-    <button onclick="addProduct('Perrito Venezolano', 4.99)">Perrito Venezolano - 4,99€</button>
-    <button onclick="addProduct('Perrito sencillo', 3.5)">Perrito sencillo - 3,50€</button>
-    <button onclick="addProduct('Perrito Los Chamos', 6.5)">Perrito Los Chamos - 6,50€</button>
-    <button onclick="addProduct('Hamburguesa Los Chamos', 11.99)">Hamburguesa - 11,99€</button>
-    <button onclick="addProduct('Malta Maltin/Pony', 2.99)">Malta Maltin/Pony - 2,99€</button>
-    <button onclick="addProduct('Frescolita', 2.99)">Frescolita - 2,99€</button>
+  <div id="perla" class="section tab-content">
+    <div class="button-grid">
+      <button class="product-btn" onclick="addProduct('Mojitos P', 7, 'perla')">Mojitos P 7€</button>
+      <button class="product-btn" onclick="addProduct('Mojitos G', 12, 'perla')">Mojitos G 12€</button>
+      <button class="product-btn" onclick="addProduct('Caipirinha P', 7, 'perla')">Caipirinha P 7€</button>
+      <button class="product-btn" onclick="addProduct('Caipirinha G', 12, 'perla')">Caipirinha G 12€</button>
+      <button class="product-btn" onclick="addProduct('Cóctel P', 7, 'perla')">Cóctel P 7€</button>
+      <button class="product-btn" onclick="addProduct('Cóctel G', 12, 'perla')">Cóctel G 12€</button>
+      <button class="product-btn" onclick="addProduct('Cóctel s/n alc P', 6, 'perla')">Cóctel s/n alc P 6€</button>
+      <button class="product-btn" onclick="addProduct('Cóctel s/n alc G', 10, 'perla')">Cóctel s/n alc G 10€</button>
+      <button class="product-btn" onclick="addProduct('Chupito', 3, 'perla')">Chupito 3€</button>
+      <button class="product-btn" onclick="addProduct('Cerveza', 3, 'perla')">Cerveza 3€</button>
+      <button class="product-btn" onclick="addProduct('Refresco', 2.5, 'perla')">Refresco 2,50€</button>
+      <button class="product-btn" onclick="addProduct('Zumo', 2.5, 'perla')">Zumo 2,50€</button>
+      <button class="product-btn" onclick="addProduct('Agua', 1.5, 'perla')">Agua 1,50€</button>
+      <button class="product-btn" onclick="addProduct('Sidra', 4, 'perla')">Sidra 4€</button>
+      <button class="product-btn" onclick="addProduct('Tinto de verano', 6, 'perla')">Tinto de verano 6€</button>
+      <button class="product-btn" onclick="addProduct('Kalimotxo', 7, 'perla')">Kalimotxo 7€</button>
+      <button class="product-btn" onclick="addProduct('Cubata', 6, 'perla')">Cubata 6€</button>
+    </div>
   </div>
-</div>
 
-<div id="total">Total: 0.00€</div>
+  <div id="chamos" class="section tab-content" style="display:none;">
+    <div class="button-grid">
+      <button class="product-btn" onclick="addProduct('Tequeños', 9.99, 'chamos')">Tequeños 9,99€</button>
+      <button class="product-btn" onclick="addProduct('Patatas Locas XL', 11.99, 'chamos')">Patatas Locas XL 11,99€</button>
+      <button class="product-btn" onclick="addProduct('Alitas de pollo bbq', 14.99, 'chamos')">Alitas de pollo bbq 14,99€</button>
+      <button class="product-btn" onclick="addProduct('Tajadas de plátano', 7.99, 'chamos')">Tajadas de plátano 7,99€</button>
+      <button class="product-btn" onclick="addProduct('Arepas Pelua/Sifrina', 8.99, 'chamos')">Arepas Pelua/Sifrina 8,99€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Reina Pepiada/Popular', 7.99, 'chamos')">Arepa Reina Pepiada/Popular 7,99€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Los Chamos/Veguis', 9.99, 'chamos')">Arepa Los Chamos/Veguis 9,99€</button>
+      <button class="product-btn" onclick="addProduct('Arepas Pabellón/Chevere/Mixta', 11.99, 'chamos')">Arepas Pabellón/Chevere/Mixta 11,99€</button>
+      <button class="product-btn" onclick="addProduct('Patacon Mortal', 14.99, 'chamos')">Patacon Mortal 14,99€</button>
+      <button class="product-btn" onclick="addProduct('Patacon Los Chamos', 11.99, 'chamos')">Patacon Los Chamos 11,99€</button>
+      <button class="product-btn" onclick="addProduct('Perrito Venezolano', 4.99, 'chamos')">Perrito Venezolano 4,99€</button>
+      <button class="product-btn" onclick="addProduct('Perrito sencillo', 3.5, 'chamos')">Perrito sencillo 3,50€</button>
+      <button class="product-btn" onclick="addProduct('Perrito los Chamos', 6.5, 'chamos')">Perrito los Chamos 6,50€</button>
+      <button class="product-btn" onclick="addProduct('Hamburguesa los Chamos', 11.99, 'chamos')">Hamburguesa los Chamos 11,99€</button>
+      <button class="product-btn" onclick="addProduct('Malta Maltin/Pony', 2.99, 'chamos')">Malta Maltin/Pony 2,99€</button>
+      <button class="product-btn" onclick="addProduct('Frescolita', 2.99, 'chamos')">Frescolita 2,99€</button>
+    </div>
+  </div>
 
-<button id="print" onclick="printTickets()">Imprimir Tickets</button>
-<button id="reset" onclick="resetTickets()">Reiniciar</button>
+  <div id="total">Total: 0 €</div>
 
-<script>
-  // Estado de los productos agregados por menú
-  let tickets = {
-    perla: [],
-    chamos: []
-  };
+  <pre id="ticket-lists"></pre>
 
-  function showMenu(menu) {
-    document.getElementById('perla').classList.remove('active');
-    document.getElementById('chamos').classList.remove('active');
-    document.getElementById('tab-perla').classList.remove('active');
-    document.getElementById('tab-chamos').classList.remove('active');
+  <button id="print" onclick="printTicket()">Imprimir Ticket</button>
+  <button id="reset" onclick="resetTicket()">Resetear Ticket</button>
 
-    document.getElementById(menu).classList.add('active');
-    document.getElementById('tab-' + menu).classList.add('active');
-  }
+  <script>
+    let ticket = [];
 
-  function addProduct(name, price) {
-    // Determinar en qué menú estamos activos para agregar
-    const activeMenu = document.getElementById('perla').classList.contains('active') ? 'perla' : 'chamos';
-
-    tickets[activeMenu].push({name, price});
-    updateTotal();
-  }
-
-  function updateTotal() {
-    const totalPrice = tickets.perla.reduce((sum, p) => sum + p.price, 0) + tickets.chamos.reduce((sum, p) => sum + p.price, 0);
-    document.getElementById('total').textContent = `Total: ${totalPrice.toFixed(2)}€`;
-  }
-
-  function printTickets() {
-    // Imprime tickets individuales para cada producto de cada menú
-    for (const menu in tickets) {
-      tickets[menu].forEach(item => {
-        const text = `Ticket ${menu === 'perla' ? 'La Perla del Caribe' : 'Los Chamos'}\n\n` +
-                     `${item.name} - ${item.price.toFixed(2)}€\n\n` +
-                     `Gracias por su compra`;
-
-        const encodedText = encodeURIComponent(text);
-        // Llama a RAWBT con intent
-        window.open(`intent://print?text=${encodedText}#Intent;package=ru.a402d.rawbtprinter;scheme=rawbt;end`);
-      });
+    function addProduct(name, price, category) {
+      ticket.push({name, price, category});
+      updateTicket();
     }
-  }
 
-  function resetTickets() {
-    tickets.perla = [];
-    tickets.chamos = [];
-    updateTotal();
-  }
-</script>
+    function updateTicket() {
+      let total = 0;
+      let text = '';
+      // Agrupar por categoría
+      const grouped = ticket.reduce((acc, item) => {
+        if(!acc[item.category]) acc[item.category] = [];
+        acc[item.category].push(item);
+        return acc;
+      }, {});
 
+      for (const category of ['perla', 'chamos']) {
+        if (grouped[category]) {
+          text += (category === 'perla' ? "La Perla del Caribe\n" : "Los Chamos") + ":\n";
+          grouped[category].forEach(item => {
+            text += `- ${item.name} ... ${item.price.toFixed(2)} €\n`;
+            total += item.price;
+          });
+          text += "\n";
+        }
+      }
+      document.getElementById('ticket-lists').textContent = text.trim();
+      document.getElementById('total').textContent = `Total: ${total.toFixed(2)} €`;
+    }
+
+    function printTicket() {
+      alert("Función de impresión no implementada en este ejemplo.");
+    }
+
+    function resetTicket() {
+      ticket = [];
+      updateTicket();
+    }
+
+    // Tabs switching
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelector('.tab.active').classList.remove('active');
+        tab.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+        document.getElementById(tab.dataset.tab).style.display = 'block';
+      });
+    });
+
+    // Inicializar ticket vacío
+    updateTicket();
+  </script>
 </body>
 </html>
