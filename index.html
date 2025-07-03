@@ -146,7 +146,7 @@
     document.getElementById("ticket-list").innerText = ticketItems.join("\n");
   }
 
- function generateTicket() {
+function generateTicket() {
   if (ticketItems.length === 0) return;
 
   let text = "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
@@ -154,15 +154,16 @@
 
   let encodedText = encodeURIComponent(text);
 
-  window.open(`rawbt://print?text=${encodedText}`, '_self');
-}
+  const rawbtUrl = `rawbt://print?text=${encodedText}`;
 
-  function resetTicket() {
-    total = 0;
-    ticketItems = [];
-    document.getElementById("total").innerText = "Total: 0€";
-    document.getElementById("ticket-list").innerText = "";
-  }
+  // Crear enlace invisible y hacer clic
+  const a = document.createElement('a');
+  a.href = rawbtUrl;
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
 </script>
 </body>
 </html>
