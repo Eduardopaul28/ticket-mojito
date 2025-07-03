@@ -77,25 +77,21 @@
     #reset:active {
       background-color: #d32f2f;
     }
-    #printLink {
-      display: inline-block;
+    #print {
+      margin-top: 1rem;
       padding: 1rem;
+      width: 90%;
       background: #2196f3;
       color: white;
+      border: none;
       border-radius: 10px;
-      text-align: center;
-      width: 90%;
-      margin-top: 1rem;
-      text-decoration: none;
+      cursor: pointer;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       user-select: none;
     }
-    #printLink:active {
-      background-color: #1976d2;
-    }
-    #printLink[aria-disabled="true"] {
-      pointer-events: none;
-      opacity: 0.5;
+    #print:disabled {
+      background-color: #90caf9;
+      cursor: default;
     }
   </style>
 </head>
@@ -151,7 +147,7 @@
   <div id="total">Total: 0€</div>
   <div id="ticket-list"></div>
 
-  <a id="printLink" href="#" aria-disabled="true">Imprimir Ticket</a>
+  <button id="print" onclick="printTicket()" disabled>Imprimir Ticket</button>
   <button id="reset" onclick="resetTicket()">Reiniciar Ticket</button>
 
   <script>
@@ -163,36 +159,16 @@
       ticketItems.push(`${name} - ${price.toFixed(2)}€`);
       document.getElementById("total").innerText = `Total: ${total.toFixed(2)}€`;
       document.getElementById("ticket-list").innerText = ticketItems.join("\n");
-      updatePrintLink();
+      document.getElementById("print").disabled = false;
     }
 
-    function updatePrintLink() {
-      const printLink = document.getElementById("printLink");
-      if (ticketItems.length === 0) {
-        printLink.href = "#";
-        printLink.setAttribute("aria-disabled", "true");
-        return;
-      }
+    function printTicket() {
+      if(ticketItems.length === 0) return;
 
       let text = "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
-      text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra\n\n`;
+      text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra`;
 
       let encodedText = encodeURIComponent(text);
 
-      printLink.href = `rawbt://print?text=${encodedText}`;
-      printLink.removeAttribute("aria-disabled");
-    }
-
-    function resetTicket() {
-      total = 0;
-      ticketItems = [];
-      document.getElementById("total").innerText = "Total: 0€";
-      document.getElementById("ticket-list").innerText = "";
-      updatePrintLink();
-    }
-
-    // Inicializar link al cargar
-    updatePrintLink();
-  </script>
-</body>
-</html>
+      // Esto abre RAWBT app para imprimir en Android
+      window.location.href
