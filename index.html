@@ -22,6 +22,7 @@
     }
     .tab {
       padding: 0.75rem 1.5rem;
+      background: #2196f3; /* Azul para Los Chamos */
       color: white;
       border-radius: 10px;
       cursor: pointer;
@@ -29,19 +30,14 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     .tab.active {
+      background: #1769aa;
       font-weight: bold;
     }
-    .tab[data-tab="chamos"] {
-      background-color: #1976d2; /* azul */
-    }
-    .tab[data-tab="chamos"].active {
-      background-color: #115293;
-    }
     .tab[data-tab="perla"] {
-      background-color: #2e7d32; /* verde */
+      background: #4caf50; /* Verde para La Perla */
     }
     .tab[data-tab="perla"].active {
-      background-color: #1b4d1b;
+      background: #388e3c;
     }
     .section {
       max-width: 400px;
@@ -57,50 +53,60 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 0.5rem;
     }
-    /* Botones Los Chamos en azul */
-    #chamos .product-btn {
-      background-color: #1976d2;
-      color: white;
-      border-radius: 10px;
+    button.product-btn {
       padding: 1rem;
       font-size: 1rem;
       border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      user-select: none;
-    }
-    #chamos .product-btn:active {
-      background-color: #115293;
-    }
-    /* Botones La Perla en verde */
-    #perla .product-btn {
-      background-color: #2e7d32;
-      color: white;
       border-radius: 10px;
-      padding: 1rem;
-      font-size: 1rem;
-      border: none;
       cursor: pointer;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       user-select: none;
+      color: white;
     }
-    #perla .product-btn:active {
-      background-color: #1b4d1b;
+    /* Colores para botones según menú */
+    #chamos button.product-btn {
+      background-color: #2196f3; /* azul */
+    }
+    #chamos button.product-btn:active {
+      background-color: #1769aa;
+    }
+    #perla button.product-btn {
+      background-color: #4caf50; /* verde */
+    }
+    #perla button.product-btn:active {
+      background-color: #388e3c;
     }
     #total {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
       color: #333;
       font-weight: bold;
+      text-align: center;
     }
     #ticket-lists {
       font-family: monospace;
-      white-space: pre-line;
+      white-space: normal;
       text-align: left;
       color: #333;
       margin-bottom: 1rem;
       max-width: 400px;
       width: 90vw;
+    }
+    #ticket-lists div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.25rem 0;
+    }
+    #ticket-lists button.remove-btn {
+      color: red;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      user-select: none;
+      padding: 0 0.25rem;
     }
     button#print, button#reset {
       width: 90vw;
@@ -113,17 +119,16 @@
       cursor: pointer;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       user-select: none;
+      color: white;
     }
     button#print {
       background-color: #2196f3;
-      color: white;
     }
     button#print:active {
       background-color: #1976d2;
     }
     button#reset {
       background-color: #f44336;
-      color: white;
     }
     button#reset:active {
       background-color: #d32f2f;
@@ -224,44 +229,43 @@
     }
 
     function updateDisplay() {
+      // Suma total ambos tickets
       const totalChamos = ticketLosChamos.reduce((acc, p) => acc + p.price, 0);
       const totalPerla = ticketPerla.reduce((acc, p) => acc + p.price, 0);
       const total = totalChamos + totalPerla;
 
       document.getElementById('total').innerText = `Total: ${total.toFixed(2)}€`;
 
+      // Mostrar listados con botones para eliminar
       let listHtml = '';
-
       if(ticketLosChamos.length) {
         listHtml += '<strong>--- Los Chamos ---</strong><br>';
-        ticketLosChamos.forEach((p, index) => {
+        ticketLosChamos.forEach((p, i) => {
           listHtml += `
-            <div style="display:flex; justify-content:space-between; align-items:center; color:#1976d2; user-select:none; margin-bottom:4px;">
-              <span>${p.name} - ${p.price.toFixed(2)}€</span>
-              <button onclick="removeProduct('chamos', ${index})" style="background:none; border:none; color:red; font-weight:bold; cursor:pointer;">X</button>
+            <div>
+              ${p.name} - ${p.price.toFixed(2)}€ 
+              <button class="remove-btn" onclick="removeProduct(${i}, 'chamos')">X</button>
             </div>
           `;
         });
         listHtml += `<br>Subtotal Los Chamos: ${totalChamos.toFixed(2)}€<br><br>`;
       }
-
       if(ticketPerla.length) {
         listHtml += '<strong>--- La Perla del Caribe ---</strong><br>';
-        ticketPerla.forEach((p, index) => {
+        ticketPerla.forEach((p, i) => {
           listHtml += `
-            <div style="display:flex; justify-content:space-between; align-items:center; color:#2e7d32; user-select:none; margin-bottom:4px;">
-              <span>${p.name} - ${p.price.toFixed(2)}€</span>
-              <button onclick="removeProduct('perla', ${index})" style="background:none; border:none; color:red; font-weight:bold; cursor:pointer;">X</button>
+            <div>
+              ${p.name} - ${p.price.toFixed(2)}€ 
+              <button class="remove-btn" onclick="removeProduct(${i}, 'perla')">X</button>
             </div>
           `;
         });
         listHtml += `<br>Subtotal La Perla: ${totalPerla.toFixed(2)}€<br><br>`;
       }
-
       document.getElementById('ticket-lists').innerHTML = listHtml;
     }
 
-    function removeProduct(menu, index) {
+    function removeProduct(index, menu) {
       if(menu === 'chamos') {
         ticketLosChamos.splice(index, 1);
       } else if(menu === 'perla') {
@@ -270,20 +274,63 @@
       updateDisplay();
     }
 
-    function printTickets() {
-      // Aquí implementa tu función de impresión
-      alert("Función imprimir no implementada todavía.");
+    function resetTickets() {
+      ticketLosChamos = [];
+      ticketPerla = [];
+      updateDisplay();
     }
 
-    function resetTickets() {
-      if(confirm('¿Seguro que quieres reiniciar los tickets?')) {
-        ticketLosChamos = [];
-        ticketPerla = [];
-        updateDisplay();
+    // Función de imprimir con RAWBT (la que tenías funcionando, adaptada)
+    function printTickets() {
+      if (ticketLosChamos.length === 0 && ticketPerla.length === 0) {
+        alert('No hay productos para imprimir.');
+        return;
+      }
+
+      // Ejemplo básico de formato raw para la impresora
+      let printData = '';
+
+      if (ticketLosChamos.length) {
+        printData += '--- Los Chamos ---\n';
+        ticketLosChamos.forEach(p => {
+          printData += `${p.name} - ${p.price.toFixed(2)}€\n`;
+        });
+        const totalChamos = ticketLosChamos.reduce((acc, p) => acc + p.price, 0);
+        printData += `Subtotal Los Chamos: ${totalChamos.toFixed(2)}€\n\n`;
+      }
+
+      if (ticketPerla.length) {
+        printData += '--- La Perla del Caribe ---\n';
+        ticketPerla.forEach(p => {
+          printData += `${p.name} - ${p.price.toFixed(2)}€\n`;
+        });
+        const totalPerla = ticketPerla.reduce((acc, p) => acc + p.price, 0);
+        printData += `Subtotal La Perla: ${totalPerla.toFixed(2)}€\n\n`;
+      }
+
+      const total = ticketLosChamos.reduce((acc, p) => acc + p.price, 0) + ticketPerla.reduce((acc, p) => acc + p.price, 0);
+      printData += `TOTAL: ${total.toFixed(2)}€\n\n`;
+
+      // RAWBT print call (ajusta según tu configuración)
+      // Ejemplo:
+      // rawbt.print({
+      //   data: printData,
+      //   success: () => alert('Impresión completada'),
+      //   error: (e) => alert('Error de impresión: ' + e)
+      // });
+
+      // Por ejemplo si usas rawbt directamente en el navegador:
+      if (window.rawbt) {
+        rawbt.print({
+          data: printData,
+          success: () => alert('Impresión completada'),
+          error: (e) => alert('Error de impresión: ' + e)
+        });
+      } else {
+        alert('RAWBT no está disponible. Aquí el texto para imprimir:\n\n' + printData);
       }
     }
 
-    // Inicializa la pantalla
     updateDisplay();
   </script>
 
