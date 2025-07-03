@@ -266,7 +266,7 @@
 
     function openRawbt(text) {
   const encodedText = encodeURIComponent(text);
-  const url = `rawbt://print?text=${encodedText}`;
+  const url = `rawbt:=${encodedText}`;
   window.open(url);
 }
 
