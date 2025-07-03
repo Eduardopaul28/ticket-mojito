@@ -13,12 +13,13 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      height: auto;
       margin: 0;
       background: #f7f7f7;
+      padding-bottom: 2rem;
     }
     h1 {
-      margin-bottom: 1rem;
+      margin: 1rem 0;
     }
     .section {
       margin-bottom: 1rem;
@@ -147,11 +148,27 @@
 
     function generateTicket() {
       if (ticketItems.length === 0) return;
-      let text = "\u{1F4DC} Ticket Los Chamos \u{1F4DC}\n\n";
+      let text = "📜 Ticket Los Chamos 📜\n\n";
       text += ticketItems.join("\n") + `\n\nTotal: ${total.toFixed(2)}€\n\nGracias por su compra`;
-      const blob = new Blob([text], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      window.open(`intent:${url}#Intent;package=ru.a402d.rawbtprinter;scheme=file;end`);
+
+      const newWindow = window.open('', '_blank');
+      newWindow.document.write(`
+        <html>
+          <head>
+            <title>Ticket</title>
+            <style>
+              body {
+                font-family: monospace;
+                white-space: pre;
+                padding: 1rem;
+                font-size: 1.2rem;
+              }
+            </style>
+          </head>
+          <body>${text.replace(/\n/g, "<br>")}</body>
+        </html>
+      `);
+      newWindow.document.close();
     }
 
     function resetTicket() {
