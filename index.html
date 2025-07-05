@@ -84,7 +84,7 @@
       margin-bottom: 1rem;
       font-size: 1.5rem;
     }
-    button#print, button#reset, button#exportPdf {
+    button#print, button#reset {
       width: 90vw;
       max-width: 400px;
       padding: 1rem;
@@ -110,13 +110,6 @@
     button#reset:active {
       background-color: #d32f2f;
     }
-    button#exportPdf {
-      background-color: #009688;
-      color: white;
-    }
-    button#exportPdf:active {
-      background-color: #00796b;
-    }
     .remove-item {
       color: red;
       font-weight: bold;
@@ -127,27 +120,35 @@
       background-color: #2196f3;
       color: white;
     }
-    /* Estilos para filtro fechas */
-    #filter-section {
+    /* Historial estilos */
+    #historial {
+      max-width: 400px;
+      width: 90vw;
       background: white;
       border-radius: 10px;
       padding: 1rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 90vw;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    #filter-section label {
-      margin: 0 0.5rem 0 0;
-      font-weight: bold;
-    }
-    #filter-section input {
-      padding: 0.25rem 0.5rem;
+      margin-bottom: 2rem;
       font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      margin-right: 1rem;
+      color: #333;
+    }
+    #historial h3 {
+      margin-top: 1rem;
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.3rem;
+    }
+    #historial div {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+    }
+    #historial ul {
+      margin: 0.3rem 0 0 1rem;
+      padding-left: 0;
+    }
+    #historial li {
+      list-style-type: disc;
+      margin-left: 1rem;
     }
   </style>
 </head>
@@ -180,285 +181,205 @@
       <button class="product-btn chamos-btn" onclick="addProduct('Perrito Venezolano', 4.99, 'chamos')">Perrito Venezolano - 4,99€</button>
       <button class="product-btn chamos-btn" onclick="addProduct('Perrito Sencillo', 3.50, 'chamos')">Perrito Sencillo - 3,50€</button>
       <button class="product-btn chamos-btn" onclick="addProduct('Perrito Los Chamos', 6.50, 'chamos')">Perrito Los Chamos - 6,50€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Los Chamos', 11.99, 'chamos')">Hamburguesa - 11,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Malta Maltin/Pony', 2.99, 'chamos')">Malta - 2,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Frescolita', 2.99, 'chamos')">Frescolita - 2,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Suplemento', 1, 'chamos')">Suplemento - 1€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Los Chamos', 11.99, 'chamos
+      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Los Chamos', 11.99, 'chamos')">Hamburguesa Los Chamos - 11,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Chevere', 13.99, 'chamos')">Hamburguesa Chevere - 13,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Mixta', 14.99, 'chamos')">Hamburguesa Mixta - 14,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Vegana', 12.99, 'chamos')">Hamburguesa Vegana - 12,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Popular', 11.99, 'chamos')">Hamburguesa Popular - 11,99€</button>
+      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Doble', 15.99, 'chamos')">Hamburguesa Doble - 15,99€</button>
     </div>
   </div>
 
   <div id="perla" class="section tab-content" style="display:none;">
     <div class="button-grid">
-      <button class="product-btn perla-btn" onclick="addProduct('Cóctel Pequeño', 7, 'perla')">Cóctel P - 7€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cóctel Grande', 12, 'perla')">Cóctel G - 12€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cóctel sin alcohol Pequeño', 6, 'perla')">Cóctel sn alc P - 6€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cóctel sin alcohol Grande', 10, 'perla')">Cóctel sn alc G - 10€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Chupito', 3, 'perla')">Chupito - 3€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cerveza Grande', 6, 'perla')">Cerveza G - 6€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cerveza', 3, 'perla')">Cerveza - 3€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Refresco', 2.5, 'perla')">Refresco - 2,50€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Zumo', 2.5, 'perla')">Zumo - 2,50€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Agua', 1.5, 'perla')">Agua - 1,50€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Cerveza Polar', 3.50, 'perla')">Cerveza Polar - 3,50€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Coca-Cola', 2.00, 'perla')">Coca-Cola - 2,00€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Agua Mineral', 1.50, 'perla')">Agua Mineral - 1,50€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Jugo Natural', 2.50, 'perla')">Jugo Natural - 2,50€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Ron Cartavio', 4.00, 'perla')">Ron Cartavio - 4,00€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Pisco Sour', 5.00, 'perla')">Pisco Sour - 5,00€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Chicha Morada', 3.00, 'perla')">Chicha Morada - 3,00€</button>
+      <button class="product-btn perla-btn" onclick="addProduct('Inca Kola', 2.00, 'perla')">Inca Kola - 2,00€</button>
     </div>
   </div>
 
-  <!-- Filtro de fechas -->
-  <div id="filter-section" class="section">
-    <label for="filterStart">Fecha inicio:</label>
-    <input type="date" id="filterStart" />
-    <label for="filterEnd">Fecha fin:</label>
-    <input type="date" id="filterEnd" />
-    <button onclick="filterTicketsByDate()">Filtrar tickets</button>
+  <div id="ticket-lists" class="section" style="white-space: pre-wrap;"></div>
+
+  <div id="total" class="section">Total: 0,00€</div>
+
+  <button id="print" class="section" onclick="printTickets()">Imprimir Tickets</button>
+  <button id="reset" class="section" onclick="resetAll()">Reiniciar</button>
+
+  <div id="historial" class="section">
+    <h2>Historial de Tickets</h2>
   </div>
 
-  <div id="total" style="font-size: 2rem;"></div>
+<script>
+  // Variables para almacenar los productos seleccionados separados por negocio
+  let productosChamos = [];
+  let productosPerla = [];
 
-  <div id="ticket-lists"></div>
-
-  <button id="print" onclick="printTickets()">Imprimir tickets</button>
-  <button id="reset" onclick="resetTickets()">Borrar tickets</button>
-  <button id="exportPdf" onclick="exportTicketsToPdf()">Exportar a PDF</button>
-
-  <script>
-    // Tus arrays originales
-    const ticketLosChamos = [];
-    const ticketPerla = [];
-
-    // Para almacenar la fecha de cada producto añadido
-    const ticketLosChamosFull = [];
-    const ticketPerlaFull = [];
-
-    // Función para cambiar pestañas (tu código intacto)
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', e => {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        e.target.classList.add('active');
-        document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
-        document.getElementById(e.target.dataset.tab).style.display = 'block';
+  // Cambiar tab y mostrar el contenido correspondiente
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const tabName = tab.getAttribute('data-tab');
+      document.querySelectorAll('.tab-content').forEach(tc => {
+        tc.style.display = 'none';
       });
+      document.getElementById(tabName).style.display = 'block';
+    });
+  });
+
+  function addProduct(nombre, precio, negocio) {
+    const producto = { nombre, precio };
+    if (negocio === 'chamos') {
+      productosChamos.push(producto);
+    } else if (negocio === 'perla') {
+      productosPerla.push(producto);
+    }
+    actualizarTickets();
+  }
+
+  function actualizarTickets() {
+    let textoChamos = '--- Los Chamos ---\n';
+    let totalChamos = 0;
+    productosChamos.forEach(p => {
+      textoChamos += `${p.nombre} - ${p.precio.toFixed(2)}€\n`;
+      totalChamos += p.precio;
+    });
+    textoChamos += `Total Los Chamos: ${totalChamos.toFixed(2)}€\n\n`;
+
+    let textoPerla = '--- La Perla del Caribe ---\n';
+    let totalPerla = 0;
+    productosPerla.forEach(p => {
+      textoPerla += `${p.nombre} - ${p.precio.toFixed(2)}€\n`;
+      totalPerla += p.precio;
+    });
+    textoPerla += `Total La Perla: ${totalPerla.toFixed(2)}€\n`;
+
+    // Mostrar tickets separados
+    document.getElementById('ticket-lists').textContent = textoChamos + textoPerla;
+
+    // Mostrar total global
+    const totalGlobal = totalChamos + totalPerla;
+    document.getElementById('total').textContent = `Total General: ${totalGlobal.toFixed(2)}€`;
+  }
+
+  function printTickets() {
+    if (productosChamos.length === 0 && productosPerla.length === 0) {
+      alert('No hay productos para imprimir');
+      return;
+    }
+
+    const fecha = new Date().toLocaleString();
+
+    // Preparar textos separados para impresión
+    let textoImpresion = '';
+
+    if (productosChamos.length > 0) {
+      textoImpresion += '--- Los Chamos ---\n';
+      productosChamos.forEach(p => {
+        textoImpresion += `${p.nombre} - ${p.precio.toFixed(2)}€\n`;
+      });
+      let totalChamos = productosChamos.reduce((acc, p) => acc + p.precio, 0);
+      textoImpresion += `Total Los Chamos: ${totalChamos.toFixed(2)}€\n\n`;
+    }
+
+    if (productosPerla.length > 0) {
+      textoImpresion += '--- La Perla del Caribe ---\n';
+      productosPerla.forEach(p => {
+        textoImpresion += `${p.nombre} - ${p.precio.toFixed(2)}€\n`;
+      });
+      let totalPerla = productosPerla.reduce((acc, p) => acc + p.precio, 0);
+      textoImpresion += `Total La Perla: ${totalPerla.toFixed(2)}€\n\n`;
+    }
+
+    textoImpresion += `Fecha: ${fecha}`;
+
+    // Aquí puedes integrar la función de impresión que tengas
+    // Por ahora, mostramos en consola y alert para simular impresión
+    console.log('Imprimiendo ticket:\n' + textoImpresion);
+    alert('Ticket impreso:\n' + textoImpresion);
+
+    // Guardar en historial
+    guardarEnHistorial(fecha, productosChamos, productosPerla);
+
+    // Limpiar después de imprimir
+    resetAll();
+  }
+
+  function guardarEnHistorial(fecha, chamos, perla) {
+    const historial = JSON.parse(localStorage.getItem('historialTickets')) || [];
+
+    // Clonar arrays para almacenar y evitar referencias
+    const chamosClone = chamos.map(p => ({...p}));
+    const perlaClone = perla.map(p => ({...p}));
+
+    historial.push({
+      fecha,
+      chamos: chamosClone,
+      perla: perlaClone,
     });
 
-    // Añadir producto (tu código intacto + guardamos fecha)
-    function addProduct(name, price, tipo) {
-      const fechaAhora = new Date();
+    localStorage.setItem('historialTickets', JSON.stringify(historial));
+    mostrarHistorial();
+  }
 
-      if(tipo === 'chamos') {
-        ticketLosChamos.push({ name, price });
-        ticketLosChamosFull.push({ name, price, date: fechaAhora });
-      } else {
-        ticketPerla.push({ name, price });
-        ticketPerlaFull.push({ name, price, date: fechaAhora });
-      }
-      updateDisplay();
+  function mostrarHistorial() {
+    const historial = JSON.parse(localStorage.getItem('historialTickets')) || [];
+    const divHistorial = document.getElementById('historial');
+
+    if(historial.length === 0) {
+      divHistorial.innerHTML = '<h2>Historial de Tickets</h2><p>No hay tickets impresos aún.</p>';
+      return;
     }
 
-    // Actualizar display, sin tocar tu código original excepto para incluir botón borrar individual (añadido)
-    function updateDisplay() {
-      let displayText = '';
-      let total = 0;
+    let html = '<h2>Historial de Tickets</h2>';
+    historial.forEach((ticket, index) => {
+      html += `<div><h3>Ticket ${index + 1} - ${ticket.fecha}</h3>`;
 
-      if(ticketLosChamos.length > 0) {
-        displayText += 'Los Chamos:\n';
-        ticketLosChamos.forEach((p, i) => {
-          displayText += `${p.name} - ${p.price.toFixed(2)}€` + ` <span class="remove-item" onclick="removeProduct('chamos', ${i})">[x]</span>\n`;
-          total += p.price;
+      if (ticket.chamos.length > 0) {
+        html += '<strong>Los Chamos:</strong><ul>';
+        ticket.chamos.forEach(p => {
+          html += `<li>${p.nombre} - ${p.precio.toFixed(2)}€</li>`;
         });
-        displayText += `Total Los Chamos: ${total.toFixed(2)}€\n\n`;
+        let totalChamos = ticket.chamos.reduce((acc, p) => acc + p.precio, 0);
+        html += `</ul><p>Total Los Chamos: ${totalChamos.toFixed(2)}€</p>`;
       }
 
-      let totalPerla = 0;
-      if(ticketPerla.length > 0) {
-        displayText += 'La Perla del Caribe:\n';
-        ticketPerla.forEach((p, i) => {
-          displayText += `${p.name} - ${p.price.toFixed(2)}€` + ` <span class="remove-item" onclick="removeProduct('perla', ${i})">[x]</span>\n`;
-          totalPerla += p.price;
+      if (ticket.perla.length > 0) {
+        html += '<strong>La Perla del Caribe:</strong><ul>';
+        ticket.perla.forEach(p => {
+          html += `<li>${p.nombre} - ${p.precio.toFixed(2)}€</li>`;
         });
-        displayText += `Total La Perla: ${totalPerla.toFixed(2)}€\n\n`;
+        let totalPerla = ticket.perla.reduce((acc, p) => acc + p.precio, 0);
+        html += `</ul><p>Total La Perla: ${totalPerla.toFixed(2)}€</p>`;
       }
 
-      total += totalPerla;
+      let totalGeneral = ticket.chamos.reduce((acc, p) => acc + p.precio, 0) +
+                         ticket.perla.reduce((acc, p) => acc + p.precio, 0);
 
-      document.getElementById('ticket-lists').innerHTML = displayText.replace(/\n/g, '<br>');
-      document.getElementById('total').textContent = `Total acumulado: ${total.toFixed(2)}€`;
-    }
+      html += `<p><strong>Total General: ${totalGeneral.toFixed(2)}€</strong></p></div>`;
+    });
 
-    // Remover producto individual, agregando fecha también a arrays completos
-    function removeProduct(tipo, index) {
-      if(tipo === 'chamos') {
-        ticketLosChamos.splice(index, 1);
-        ticketLosChamosFull.splice(index, 1);
-      } else {
-        ticketPerla.splice(index, 1);
-        ticketPerlaFull.splice(index, 1);
-      }
-      updateDisplay();
-    }
+    divHistorial.innerHTML = html;
+  }
 
-    // Borrar todo el ticket
-    function resetTickets() {
-      ticketLosChamos.length = 0;
-      ticketPerla.length = 0;
-      ticketLosChamosFull.length = 0;
-      ticketPerlaFull.length = 0;
-      updateDisplay();
-    }
+  function resetAll() {
+    productosChamos = [];
+    productosPerla = [];
+    actualizarTickets();
+  }
 
-    // Función para generar texto del ticket (tu función original intacta)
-    function generateTicketText(products, businessName, total) {
-      let text = `${businessName}\n----------------\n`;
-      products.forEach(p => {
-        text += `${p.name} - ${p.price.toFixed(2)}€\n`;
-      });
-      text += `----------------\nTotal: ${total.toFixed(2)}€`;
-      return text;
-    }
+  // Mostrar historial al cargar
+  mostrarHistorial();
+  actualizarTickets();
 
-    // Función impresión (tu función intacta, llamando openRawbt)
-    function openRawbt(text) {
-      const url = 'rawbt://print?text=' + encodeURIComponent(text);
-      window.location.href = url;
-    }
+</script>
 
-    // Función impresión tickets, sin modificar tu lógica, pero evitando llamadas dobles
-    function printTickets() {
-      if(ticketLosChamos.length === 0 && ticketPerla.length === 0) {
-        return alert('No hay productos seleccionados.');
-      }
-
-      const totalChamos = ticketLosChamos.reduce((acc, p) => acc + p.price, 0);
-      const totalPerla = ticketPerla.reduce((acc, p) => acc + p.price, 0);
-
-      let finalText = '';
-
-      if(ticketLosChamos.length) {
-        finalText += generateTicketText(ticketLosChamos, 'Los Chamos', totalChamos) + '\n\n';
-      }
-
-      if(ticketPerla.length) {
-        finalText += generateTicketText(ticketPerla, 'La Perla del Caribe', totalPerla);
-      }
-
-      openRawbt(finalText.trim());
-    }
-
-    // Nueva función para filtrar tickets por fecha
-    function filterTicketsByDate() {
-      const startDateInput = document.getElementById('filterStart').value;
-      const endDateInput = document.getElementById('filterEnd').value;
-
-      if(!startDateInput || !endDateInput) {
-        alert('Por favor, selecciona ambas fechas para filtrar.');
-        return;
-      }
-
-      const startDate = new Date(startDateInput);
-      const endDate = new Date(endDateInput);
-      // Aseguramos que endDate incluya todo el día
-      endDate.setHours(23,59,59,999);
-
-      // Filtrar arrays con fechas dentro del rango
-      const filteredChamos = ticketLosChamosFull.filter(p => {
-        const d = new Date(p.date);
-        return d >= startDate && d <= endDate;
-      });
-
-      const filteredPerla = ticketPerlaFull.filter(p => {
-        const d = new Date(p.date);
-        return d >= startDate && d <= endDate;
-      });
-
-      // Mostrar en pantalla los tickets filtrados (simplemente)
-      let displayText = '';
-      let total = 0;
-
-      if(filteredChamos.length > 0) {
-        displayText += 'Los Chamos (Filtrado):\n';
-        filteredChamos.forEach(p => {
-          displayText += `${p.name} - ${p.price.toFixed(2)}€\n`;
-          total += p.price;
-        });
-        displayText += `Total Los Chamos: ${total.toFixed(2)}€\n\n`;
-      }
-
-      let totalPerla = 0;
-      if(filteredPerla.length > 0) {
-        displayText += 'La Perla del Caribe (Filtrado):\n';
-        filteredPerla.forEach(p => {
-          displayText += `${p.name} - ${p.price.toFixed(2)}€\n`;
-          totalPerla += p.price;
-        });
-        displayText += `Total La Perla: ${totalPerla.toFixed(2)}€\n\n`;
-      }
-
-      total += totalPerla;
-
-      if(displayText === '') {
-        displayText = 'No hay productos en ese rango de fechas.';
-      }
-
-      document.getElementById('ticket-lists').innerHTML = displayText.replace(/\n/g, '<br>');
-      document.getElementById('total').textContent = `Total acumulado (filtrado): ${total.toFixed(2)}€`;
-    }
-
-    // Función para exportar a PDF usando jsPDF
-    async function exportTicketsToPdf() {
-      // Cargamos jsPDF desde CDN (solo la primera vez)
-      if (!window.jsPDF) {
-        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
-      }
-
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-
-      let y = 10;
-      doc.setFontSize(16);
-      doc.text('Tickets La Perla del Caribe & Los Chamos', 10, y);
-      y += 10;
-
-      function writeProducts(title, products) {
-        doc.setFontSize(14);
-        doc.text(title, 10, y);
-        y += 8;
-        doc.setFontSize(12);
-        products.forEach(p => {
-          doc.text(`${p.name} - ${p.price.toFixed(2)}€`, 10, y);
-          y += 7;
-          if (y > 280) { doc.addPage(); y = 10; }
-        });
-        const total = products.reduce((acc, p) => acc + p.price, 0);
-        doc.setFontSize(13);
-        doc.text(`Total: ${total.toFixed(2)}€`, 10, y);
-        y += 10;
-      }
-
-      if(ticketLosChamos.length) {
-        writeProducts('Los Chamos:', ticketLosChamos);
-      }
-
-      if(ticketPerla.length) {
-        writeProducts('La Perla del Caribe:', ticketPerla);
-      }
-
-      if(ticketLosChamos.length === 0 && ticketPerla.length === 0) {
-        doc.setFontSize(12);
-        doc.text('No hay productos seleccionados.', 10, y);
-      }
-
-      doc.save('tickets.pdf');
-    }
-
-    // Helper para cargar scripts externos
-    function loadScript(src) {
-      return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-      });
-    }
-
-    updateDisplay(); // Mostrar estado inicial
-  </script>
 </body>
 </html>
