@@ -184,6 +184,12 @@
 
   <div id="total">Total: 0€</div>
   <div id="ticket-lists"></div>
+  <div style="max-width: 400px; width: 90vw; margin-bottom: 1rem;">
+  <label for="pagoCliente">Pago del cliente (€):</label>
+  <input type="number" id="pagoCliente" placeholder="Ej: 50" style="width: 100%; padding: 0.5rem; font-size: 1.2rem; border-radius: 8px; border: 1px solid #ccc;" oninput="calcularCambio()" />
+</div>
+<div id="cambio" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: #4caf50;"></div>
+
   <button id="print" onclick="printTickets()">Imprimir Tickets</button>
   <button id="reset" onclick="resetTickets()">Reiniciar Tickets</button>
 
@@ -282,7 +288,30 @@
       ticketLosChamos = [];
       ticketPerla = [];
       updateDisplay();
+      document.getElementById('pagoCliente').value = '';
+document.getElementById('cambio').innerText = '';
+
     }
+    function calcularCambio() {
+  const input = document.getElementById('pagoCliente');
+  const cambioDiv = document.getElementById('cambio');
+  const total = ticketLosChamos.reduce((acc, p) => acc + p.price, 0) + ticketPerla.reduce((acc, p) => acc + p.price, 0);
+  const pago = parseFloat(input.value);
+
+  if (!isNaN(pago) && pago >= 0) {
+    const cambio = pago - total;
+    if (cambio < 0) {
+      cambioDiv.innerText = `Faltan ${(Math.abs(cambio)).toFixed(2)}€`;
+      cambioDiv.style.color = 'red';
+    } else {
+      cambioDiv.innerText = `Cambio: ${cambio.toFixed(2)}€`;
+      cambioDiv.style.color = '#4caf50';
+    }
+  } else {
+    cambioDiv.innerText = '';
+  }
+}
+
   </script>
 </body>
 </html>
