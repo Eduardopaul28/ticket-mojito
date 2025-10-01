@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tickets La Perla del Caribe & Los Chamos</title>
+  <title>Tickets La Perla Gourmet</title>
   <style>
     body {
       font-family: sans-serif;
@@ -14,24 +14,6 @@
     }
     h1 {
       margin: 1rem 0;
-    }
-    .tabs {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .tab {
-      padding: 0.75rem 1.5rem;
-      background: #4caf50;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .tab.active {
-      background: #388e3c;
-      font-weight: bold;
     }
     .section {
       max-width: 400px;
@@ -49,7 +31,7 @@
     }
     button.product-btn {
       padding: 1rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -57,17 +39,9 @@
       user-select: none;
       color: white;
       font-weight: bold;
-    }
-    button.product-btn.chamos-btn {
-      background-color: #2196f3;
-    }
-    button.product-btn.chamos-btn:active {
-      background-color: #1976d2;
-    }
-    button.product-btn.perla-btn {
       background-color: #4caf50;
     }
-    button.product-btn.perla-btn:active {
+    button.product-btn:active {
       background-color: #388e3c;
     }
     #total {
@@ -82,7 +56,7 @@
       text-align: center;
       color: #333;
       margin-bottom: 1rem;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
     button#print, button#reset {
       width: 90vw;
@@ -116,200 +90,130 @@
       cursor: pointer;
       margin-left: 8px;
     }
-    .tab[data-tab="chamos"] {
-  background-color: #2196f3;
-  color: white;
-}
   </style>
 </head>
 <body>
 
-  <h1>Tickets La Perla del Caribe & Los Chamos</h1>
+  <h1>Tickets La Perla Gourmet</h1>
 
-  <div class="tabs">
-    <div class="tab active" data-tab="chamos">Los Chamos</div>
-    <div class="tab" data-tab="perla">La Perla del Caribe</div>
-  </div>
-
-  <div id="chamos" class="section tab-content">
+  <div id="menu" class="section">
     <div class="button-grid">
-      <button class="product-btn chamos-btn" onclick="addProduct('Patatas Locas XL', 11.99, 'chamos')">Patatas Locas XL - 11,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Alitas de pollo BBQ', 14.99, 'chamos')">Alitas BBQ - 14,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Tajadas de plátano', 7.99, 'chamos')">Tajadas - 7,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Pelua', 8.99, 'chamos')">Arepas Pelua - 8,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Sifrina', 8.99, 'chamos')">Arepas Sifrina - 8,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Reina Pepiada', 7.99, 'chamos')">Arepas Reina - 7,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Popular', 7.99, 'chamos')">Arepas Popular - 7,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Los Chamos', 9.99, 'chamos')">Arepas Chamos - 9,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Veguis', 9.99, 'chamos')">Arepas Veguis - 9,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Pabellón', 11.99, 'chamos')">Arepas Pabellón - 11,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Chevere', 11.99, 'chamos')">Arepas Chevere - 11,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Arepa Mixta', 11.99, 'chamos')">Arepas Mixta - 11,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Patacón Mortal', 14.99, 'chamos')">Patacón Mortal - 14,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Patacón Los Chamos', 11.99, 'chamos')">Patacón Los Chamos - 11,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Perrito Venezolano', 4.99, 'chamos')">Perrito Venezolano - 4,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Perrito Sencillo', 3.50, 'chamos')">Perrito Sencillo - 3,50€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Perrito Los Chamos', 6.50, 'chamos')">Perrito Los Chamos - 6,50€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Hamburguesa Los Chamos', 11.99, 'chamos')">Hamburguesa - 11,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Platanado Maduro Queso', 6.00, 'chamos')">Platanado Maduro Queso - 6,00€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Platanado Maduro Pollo y Queso', 8.00, 'chamos')">Platanado Maduro Pollo y Queso - 8,00€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Malta Maltin/Pony', 2.99, 'chamos')">Malta - 2,99€</button>
-      <button class="product-btn chamos-btn" onclick="addProduct('Suplemento', 1, 'chamos')">Suplemento - 1€</button>
-    </div>
-  </div>
-
-  <div id="perla" class="section tab-content" style="display:none;">
-    <div class="button-grid">
-      <button class="product-btn perla-btn" onclick="addProduct('Cóctel Pequeño', 7, 'perla')">Cóctel P - 7€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cóctel Grande', 12, 'perla')">Cóctel G - 12€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cóctel sin alcohol Pequeño', 6, 'perla')">Cóctel sn alc P - 6€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cóctel sin alcohol Grande', 10, 'perla')">Cóctel sn alc G - 10€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Chupito', 3, 'perla')">Chupito - 3€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cerveza Grande', 6, 'perla')">Cerveza G - 6€</button>
-       <button class="product-btn perla-btn" onclick="addProduct('Cerveza', 3, 'perla')">Cerveza - 3€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Corona', 4, 'perla')">Corona - 4€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Refresco', 2.5, 'perla')">Refresco - 2,50€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Zumo', 2.5, 'perla')">Zumo - 2,50€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Agua', 1.5, 'perla')">Agua - 1,50€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Sidra', 4, 'perla')">Sidra - 4€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Tinto de verano', 6, 'perla')">Tinto de verano - 6€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Kalimotxo', 7, 'perla')">Kalimotxo - 7€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cubata', 6, 'perla')">Cubata - 6€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Cubata', 12, 'perla')">Cubata - 12€</button>
-      <button class="product-btn perla-btn" onclick="addProduct('Suplemento', 1, 'perla')">Suplemento - 1€</button>
+      <!-- Entrantes -->
+      <button class="product-btn" onclick="addProduct('Tequeños', 8.50)">Tequeños - 8,50€</button>
+      <button class="product-btn" onclick="addProduct('Cachitos', 5)">Cachitos - 5€</button>
+      <button class="product-btn" onclick="addProduct('Mini Pan de Jamón', 6)">Mini Pan de Jamón - 6€</button>
+      <!-- Cachapas -->
+      <button class="product-btn" onclick="addProduct('Cachapa con queso', 10)">Cachapa queso - 10€</button>
+      <button class="product-btn" onclick="addProduct('Cachapa queso y cochino frito', 12)">Cachapa cochino - 12€</button>
+      <button class="product-btn" onclick="addProduct('Cachapa queso y carne mechada', 12)">Cachapa carne - 12€</button>
+      <!-- Arepas -->
+      <button class="product-btn" onclick="addProduct('Arepa Queso Llanero', 6)">Arepa Queso - 6€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Carne Mechada', 7)">Arepa Mechada - 7€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Reina Pepiada', 7)">Arepa Reina - 7€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Cochino Frito', 7)">Arepa Cochino - 7€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Caraotas con Queso', 7)">Arepa Caraotas - 7€</button>
+      <button class="product-btn" onclick="addProduct('Arepa La Española', 8)">Arepa Española - 8€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Lo mejor de dos mundos', 8)">Arepa 2 mundos - 8€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Trimagnetica', 10)">Arepa Trimagnetica - 10€</button>
+      <!-- Perritos -->
+      <button class="product-btn" onclick="addProduct('Perrito Clásico', 3)">Perrito Clásico - 3€</button>
+      <button class="product-btn" onclick="addProduct('Perrito Especial Venezolano', 5)">Perrito Venezolano - 5€</button>
+      <button class="product-btn" onclick="addProduct('Perrito Échale Carne', 7)">Perrito Carne - 7€</button>
+      <!-- Postres y bebidas -->
+      <button class="product-btn" onclick="addProduct('Quesillo', 5)">Quesillo - 5€</button>
+      <button class="product-btn" onclick="addProduct('Tres leches', 6)">Tres leches - 6€</button>
+      <button class="product-btn" onclick="addProduct('Chicha', 4)">Chicha - 4€</button>
     </div>
   </div>
 
   <div id="total">Total: 0€</div>
   <div id="ticket-lists"></div>
-  <div style="max-width: 400px; width: 90vw; margin-bottom: 1rem;">
-  <label for="pagoCliente">Pago del cliente (€):</label>
-  <input type="number" id="pagoCliente" placeholder="Ej: 50" style="width: 100%; padding: 0.5rem; font-size: 1.2rem; border-radius: 8px; border: 1px solid #ccc;" oninput="calcularCambio()" />
-</div>
-<div id="cambio" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: #4caf50;"></div>
 
-  <button id="print" onclick="printTickets()">Imprimir Tickets</button>
-  <button id="reset" onclick="resetTickets()">Reiniciar Tickets</button>
+  <div style="max-width: 400px; width: 90vw; margin-bottom: 1rem;">
+    <label for="pagoCliente">Pago del cliente (€):</label>
+    <input type="number" id="pagoCliente" placeholder="Ej: 50" 
+      style="width: 100%; padding: 0.5rem; font-size: 1.2rem; border-radius: 8px; border: 1px solid #ccc;" 
+      oninput="calcularCambio()" />
+  </div>
+  <div id="cambio" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: #4caf50;"></div>
+
+  <button id="print" onclick="printTickets()">Imprimir Ticket</button>
+  <button id="reset" onclick="resetTickets()">Reiniciar Ticket</button>
 
   <script>
-    const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.tab-content');
+    let ticket = [];
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const target = tab.getAttribute('data-tab');
-        contents.forEach(c => c.style.display = c.id === target ? 'block' : 'none');
-      });
-    });
-
-    let ticketLosChamos = [];
-    let ticketPerla = [];
-
-    function addProduct(name, price, menu) {
-      if(menu === 'chamos') {
-        ticketLosChamos.push({name, price});
-      } else if(menu === 'perla') {
-        ticketPerla.push({name, price});
-      }
+    function addProduct(name, price) {
+      ticket.push({name, price});
       updateDisplay();
     }
 
-    function removeProduct(index, menu) {
-      if (menu === 'chamos') {
-        ticketLosChamos.splice(index, 1);
-      } else if (menu === 'perla') {
-        ticketPerla.splice(index, 1);
-      }
+    function removeProduct(index) {
+      ticket.splice(index, 1);
       updateDisplay();
     }
 
     function updateDisplay() {
-      const totalChamos = ticketLosChamos.reduce((acc, p) => acc + p.price, 0);
-      const totalPerla = ticketPerla.reduce((acc, p) => acc + p.price, 0);
-      const total = totalChamos + totalPerla;
+      const total = ticket.reduce((acc, p) => acc + p.price, 0);
       document.getElementById('total').innerText = `Total: ${total.toFixed(2)}€`;
 
       let html = '';
-
-      if(ticketLosChamos.length) {
-        html += '<div><strong>--- Los Chamos ---</strong><br>';
-        ticketLosChamos.forEach((p, i) => {
-          html += `${p.name} - ${p.price.toFixed(2)}€ <span class="remove-item" onclick="removeProduct(${i}, 'chamos')">❌</span><br>`;
-        });
-        html += `<strong>Subtotal Los Chamos: ${totalChamos.toFixed(2)}€</strong><br><br></div>`;
-      }
-
-      if(ticketPerla.length) {
-        html += '<div><strong>--- La Perla del Caribe ---</strong><br>';
-        ticketPerla.forEach((p, i) => {
-          html += `${p.name} - ${p.price.toFixed(2)}€ <span class="remove-item" onclick="removeProduct(${i}, 'perla')">❌</span><br>`;
-        });
-        html += `<strong>Subtotal La Perla: ${totalPerla.toFixed(2)}€</strong><br><br></div>`;
-      }
+      ticket.forEach((p, i) => {
+        html += `${p.name} - ${p.price.toFixed(2)}€ <span class="remove-item" onclick="removeProduct(${i})">❌</span><br>`;
+      });
 
       document.getElementById('ticket-lists').innerHTML = html;
     }
 
-    function generateTicketText(items, title, subtotal) {
-      let text = `*** ${title} ***\n\n`;
+    function generateTicketText(items, subtotal) {
+      const fecha = new Date().toLocaleString("es-ES");
+      let text = `*** La Perla Gourmet ***\n\n`;
       items.forEach(p => {
         text += `${p.name} - ${p.price.toFixed(2)}€\n`;
       });
-      text += `\nTotal: ${subtotal.toFixed(2)}€\n\nGracias por su compra!`;
+      text += `\nTotal: ${subtotal.toFixed(2)}€\nFecha: ${fecha}\n\n¡Gracias por su compra!`;
       return text;
     }
 
     function printTickets() {
-      if(ticketLosChamos.length === 0 && ticketPerla.length === 0) return alert('No hay productos seleccionados.');
-      const totalChamos = ticketLosChamos.reduce((acc, p) => acc + p.price, 0);
-      const totalPerla = ticketPerla.reduce((acc, p) => acc + p.price, 0);
-
-      if(ticketLosChamos.length) {
-        const textChamos = generateTicketText(ticketLosChamos, 'Los Chamos', totalChamos);
-        openRawbt(textChamos);
-      }
-      if(ticketPerla.length) {
-        const textPerla = generateTicketText(ticketPerla, 'La Perla del Caribe', totalPerla);
-        openRawbt(textPerla);
-      }
+      if(ticket.length === 0) return alert('No hay productos seleccionados.');
+      const total = ticket.reduce((acc, p) => acc + p.price, 0);
+      const text = generateTicketText(ticket, total);
+      openRawbt(text);
     }
 
-   function openRawbt(text) {
-  const encodedText = encodeURIComponent(text);
-  const url = `rawbt://print?text=${encodedText}`;
-  window.location.href = url;
-}
+    function openRawbt(text) {
+      const encodedText = encodeURIComponent(text);
+      const url = `rawbt://print?text=${encodedText}`;
+      window.location.href = url;
+    }
 
     function resetTickets() {
-      ticketLosChamos = [];
-      ticketPerla = [];
+      ticket = [];
       updateDisplay();
       document.getElementById('pagoCliente').value = '';
-document.getElementById('cambio').innerText = '';
-
+      document.getElementById('cambio').innerText = '';
     }
+
     function calcularCambio() {
-  const input = document.getElementById('pagoCliente');
-  const cambioDiv = document.getElementById('cambio');
-  const total = ticketLosChamos.reduce((acc, p) => acc + p.price, 0) + ticketPerla.reduce((acc, p) => acc + p.price, 0);
-  const pago = parseFloat(input.value);
+      const input = document.getElementById('pagoCliente');
+      const cambioDiv = document.getElementById('cambio');
+      const total = ticket.reduce((acc, p) => acc + p.price, 0);
+      const pago = parseFloat(input.value);
 
-  if (!isNaN(pago) && pago >= 0) {
-    const cambio = pago - total;
-    if (cambio < 0) {
-      cambioDiv.innerText = `Faltan ${(Math.abs(cambio)).toFixed(2)}€`;
-      cambioDiv.style.color = 'red';
-    } else {
-      cambioDiv.innerText = `Cambio: ${cambio.toFixed(2)}€`;
-      cambioDiv.style.color = '#4caf50';
+      if (!isNaN(pago) && pago >= 0) {
+        const cambio = pago - total;
+        if (cambio < 0) {
+          cambioDiv.innerText = `Faltan ${(Math.abs(cambio)).toFixed(2)}€`;
+          cambioDiv.style.color = 'red';
+        } else {
+          cambioDiv.innerText = `Cambio: ${cambio.toFixed(2)}€`;
+          cambioDiv.style.color = '#4caf50';
+        }
+      } else {
+        cambioDiv.innerText = '';
+      }
     }
-  } else {
-    cambioDiv.innerText = '';
-  }
-}
-
   </script>
 </body>
 </html>
