@@ -123,6 +123,8 @@
       <button class="product-btn" onclick="addProduct('Quesillo', 5)">Quesillo - 5€</button>
       <button class="product-btn" onclick="addProduct('Tres leches', 6)">Tres leches - 6€</button>
       <button class="product-btn" onclick="addProduct('Chicha', 4)">Chicha - 4€</button>
+      <!-- Complemento -->
+      <button class="product-btn" onclick="addProduct('Complemento', 1)">Complemento - 1€</button>
     </div>
   </div>
 
@@ -144,22 +146,34 @@
     let ticket = [];
 
     function addProduct(name, price) {
-      ticket.push({name, price});
+      const existing = ticket.find(p => p.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        ticket.push({name, price, qty: 1});
+      }
       updateDisplay();
     }
 
-    function removeProduct(index) {
-      ticket.splice(index, 1);
+    function removeProduct(name) {
+      const index = ticket.findIndex(p => p.name === name);
+      if (index > -1) {
+        if (ticket[index].qty > 1) {
+          ticket[index].qty--;
+        } else {
+          ticket.splice(index, 1);
+        }
+      }
       updateDisplay();
     }
 
     function updateDisplay() {
-      const total = ticket.reduce((acc, p) => acc + p.price, 0);
+      const total = ticket.reduce((acc, p) => acc + p.price * p.qty, 0);
       document.getElementById('total').innerText = `Total: ${total.toFixed(2)}€`;
 
       let html = '';
-      ticket.forEach((p, i) => {
-        html += `${p.name} - ${p.price.toFixed(2)}€ <span class="remove-item" onclick="removeProduct(${i})">❌</span><br>`;
+      ticket.forEach((p) => {
+        html += `${p.name} x${p.qty} - ${(p.price * p.qty).toFixed(2)}€ <span class="remove-item" onclick="removeProduct('${p.name}')">❌</span><br>`;
       });
 
       document.getElementById('ticket-lists').innerHTML = html;
@@ -169,7 +183,7 @@
       const fecha = new Date().toLocaleString("es-ES");
       let text = `*** La Perla Gourmet ***\n\n`;
       items.forEach(p => {
-        text += `${p.name} - ${p.price.toFixed(2)}€\n`;
+        text += `${p.name} x${p.qty} - ${(p.price * p.qty).toFixed(2)}€\n`;
       });
       text += `\nTotal: ${subtotal.toFixed(2)}€\nFecha: ${fecha}\n\n¡Gracias por su compra!`;
       return text;
@@ -177,7 +191,7 @@
 
     function printTickets() {
       if(ticket.length === 0) return alert('No hay productos seleccionados.');
-      const total = ticket.reduce((acc, p) => acc + p.price, 0);
+      const total = ticket.reduce((acc, p) => acc + p.price * p.qty, 0);
       const text = generateTicketText(ticket, total);
       openRawbt(text);
     }
@@ -198,7 +212,7 @@
     function calcularCambio() {
       const input = document.getElementById('pagoCliente');
       const cambioDiv = document.getElementById('cambio');
-      const total = ticket.reduce((acc, p) => acc + p.price, 0);
+      const total = ticket.reduce((acc, p) => acc + p.price * p.qty, 0);
       const pago = parseFloat(input.value);
 
       if (!isNaN(pago) && pago >= 0) {
@@ -217,5 +231,3 @@
   </script>
 </body>
 </html>
-
-
