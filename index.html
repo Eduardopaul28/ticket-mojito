@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>La Perla del Caribe — PWA</title>
+  <title>La Perla del Caribe</title>
 
   <!-- Tip: puedes reemplazar el icono/logo por la imagen que subiste -->
   <style>
@@ -180,30 +180,29 @@
     <header class="app-header">
       <div class="logo">
         <!-- Usa tu imagen: si el nombre es distinto cambia el src -->
-        <img src="Imagen de WhatsApp 2025-10-23 a las 18.51.42_d63dd6f1.jpg" alt="La Perla logo" />
+        <img src="src.jpg" alt="La Perla logo" />
       </div>
       <div class="title">
-        <h1>La Perla del Caribe — Coctelería</h1>
-        <div class="subtitle small">Interfaz rápida — pulsa el producto para generar ticket</div>
+        <h1>La Perla del Caribe Coctelería</h1>
       </div>
     </header>
 
     <main class="grid">
       <!-- MENU -->
       <div class="panel">
-        <div class="section-title"><strong>Menú — La Perla Pub</strong><span class="small">Neón vibes</span></div>
+        <div class="section-title"><strong>Menú La Perla Pub</strong></div>
 
         <div class="button-grid" id="menu">
           <!-- Copas (verde/cyan theme) -->
           <button class="product-btn btn-neon-green" onclick="addProduct('Copa normal', 8)">Copa normal - 8€</button>
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Copa premium', 10)">Copa premium - 10€</button>
+          <button class="product-btn btn-neon-green" onclick="addProduct('Copa premium', 10)">Copa premium - 10€</button>
 
           <!-- Suplemento manual -->
-          <button class="product-btn btn-neon-pink" onclick="addProduct('Redbull +1', 1.00)">Redbull +1€ - 1,00€</button>
+          <button class="product-btn btn-neon-green" onclick="addProduct('Redbull +1', 1.00)">Redbull +1€ - 1,00€</button>
 
           <!-- Cócteles -->
-          <button class="product-btn btn-neon-orange" onclick="addProduct('Cóctel', 8)">Cóctel - 8€</button>
-          <button class="product-btn btn-neon-pink" onclick="addProduct('Mojito con botella de Jäger', 10)">Mojito + Jäger - 10€</button>
+          <button class="product-btn btn-neon-green" onclick="addProduct('Cóctel', 8)">Cóctel - 8€</button>
+          <button class="product-btn btn-neon-green" onclick="addProduct('Mojito con botella de Jäger', 10)">Mojito + Jäger - 10€</button>
 
           <!-- Cervezas -->
           <button class="product-btn btn-neon-cyan" onclick="addProduct('Cerveza tercio normal', 3.50)">Cerveza tercio normal - 3,50€</button>
@@ -211,17 +210,17 @@
           <button class="product-btn btn-neon-cyan" onclick="addProduct('Tercios importadas', 4.50)">Tercios importadas - 4,50€</button>
 
           <!-- Cañas -->
-          <button class="product-btn btn-neon-green" onclick="addProduct('Caña normal', 3)">Caña normal - 3€</button>
-          <button class="product-btn btn-neon-green" onclick="addProduct('Caña 1906', 3.50)">Caña 1906 - 3,50€</button>
+          <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal', 3)">Caña normal - 3€</button>
+          <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña 1906', 3.50)">Caña 1906 - 3,50€</button>
 
           <!-- Refrescos / bebidas -->
           <button class="product-btn btn-neon-orange" onclick="addProduct('Refresco', 3)">Refresco - 3€</button>
-          <button class="product-btn btn-neon-pink" onclick="addProduct('Redbull', 3.50)">Redbull - 3,50€</button>
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Agua', 2.50)">Agua - 2,50€</button>
+          <button class="product-btn btn-neon-orange" onclick="addProduct('Redbull', 3.50)">Redbull - 3,50€</button>
+          <button class="product-btn btn-neon-orange" onclick="addProduct('Agua', 2.50)">Agua - 2,50€</button>
 
           <!-- Chupito & Cubo -->
           <button class="product-btn btn-neon-pink" onclick="addProduct('Chupito', 3)">Chupito - 3€</button>
-          <button class="product-btn btn-neon-orange" onclick="addProduct('Cubo', 15)">Cubo - 15€</button>
+          <button class="product-btn btn-neon-pink" onclick="addProduct('Cubo', 15)">Cubo - 15€</button>
         </div>
       </div>
 
@@ -241,9 +240,6 @@
           <div class="row">
             <button id="print" class="big-btn" onclick="printTickets()">Imprimir (RAWBT)</button>
             <button id="reset" class="big-btn" onclick="resetTickets()" style="background:linear-gradient(180deg,var(--neon-pink),#ff1f8f);">Reiniciar</button>
-          </div>
-          <div class="row small" style="margin-top:6px;color:var(--muted)">
-            <div>Historial y exportación disponibles en la versión completa.</div>
           </div>
         </div>
       </aside>
