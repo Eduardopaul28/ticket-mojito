@@ -291,9 +291,8 @@
 
     function generateTicketText(items, subtotal) {
       const fecha = new Date().toLocaleString('es-ES');
-      let text = `*** La Perla del Caribe***\\n\\n`;
-      items.forEach(p => text += `${p.name} x${p.qty} - ${(p.price * p.qty).toFixed(2)}€\\n`);
-      text += `\\nTotal: ${subtotal.toFixed(2)}€\\nFecha: ${fecha}\\n\\n¡Gracias!`;
+      let text = `La Perla del Caribe`;
+      items.forEach(p => text += `${p.name} x${p.qty} - ${(p.price * p.qty).toFixed(2)}€`)
       return text;
     }
 
