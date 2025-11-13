@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tickets La Perla del Caribe</title>
+  <title>Tickets La Perla Gourmet</title>
   <style>
     body {
       font-family: sans-serif;
@@ -94,34 +94,38 @@
 </head>
 <body>
 
-  <h1>Tickets La Perla del Caribe Pub</h1>
+  <h1>Tickets La Perla Gourmet</h1>
 
   <div id="menu" class="section">
-<div id="perla" class="section tab-content" style="display:none;">
-  <div class="button-grid">
-    <button class="product-btn" onclick="addProduct('Copa normal', 8.00, 'perla')">Copa normal - 8,00€</button>
-    <button class="product-btn" onclick="addProduct('Copa premium', 10.00, 'perla')">Copa premium - 10,00€</button>
-    <button class="product-btn" onclick="addProduct('Redbull +1', 1.00, 'perla')">Redbull +1€ - 1,00€</button>
-    <button class="product-btn" onclick="addProduct('Cóctel', 8.00, 'perla')">Cóctel - 8,00€</button>
-    <button class="product-btn" onclick="addProduct('Mojito con botella de Jäger', 10.00, 'perla')">Mojito + Jäger - 10,00€</button>
-
-    <button class="product-btn" onclick="addProduct('Cerveza tercio normal', 3.50, 'perla')">Cerveza tercio normal - 3,50€</button>
-    <button class="product-btn" onclick="addProduct('Cerveza tercio 1906', 4.00, 'perla')">Cerveza tercio 1906 - 4,00€</button>
-    <button class="product-btn" onclick="addProduct('Tercios importadas', 4.50, 'perla')">Tercios importadas - 4,50€</button>
-
-    <button class="product-btn" onclick="addProduct('Caña normal', 3.00, 'perla')">Caña normal - 3,00€</button>
-    <button class="product-btn" onclick="addProduct('Caña 1906', 3.50, 'perla')">Caña 1906 - 3,50€</button>
-
-    <button class="product-btn" onclick="addProduct('Refresco', 3.00, 'perla')">Refresco - 3,00€</button>
-    <button class="product-btn" onclick="addProduct('Redbull', 3.50, 'perla')">Redbull - 3,50€</button>
-    <button class="product-btn" onclick="addProduct('Agua', 2.50, 'perla')">Agua - 2,50€</button>
-
-    <button class="product-btn perla-btn" onclick="addProduct('Chupito', 3.00, 'perla')">Chupito - 3,00€</button>
-    <button class="product-btn perla-btn" onclick="addProduct('Cubo', 15.00, 'perla')">Cubo - 15,00€</button>
-  </div>
-</div>
-</div>
-
+    <div class="button-grid">
+      <!-- Entrantes -->
+      <button class="product-btn" onclick="addProduct('Tequeños', 8.50)">Tequeños - 8,50€</button>
+      <button class="product-btn" onclick="addProduct('Cachitos', 5)">Cachitos - 5€</button>
+      <button class="product-btn" onclick="addProduct('Mini Pan de Jamón', 6)">Mini Pan de Jamón - 6€</button>
+      <!-- Cachapas -->
+      <button class="product-btn" onclick="addProduct('Cachapa con queso', 10)">Cachapa queso - 10€</button>
+      <button class="product-btn" onclick="addProduct('Cachapa queso y cochino frito', 12)">Cachapa cochino - 12€</button>
+      <button class="product-btn" onclick="addProduct('Cachapa queso y carne mechada', 12)">Cachapa carne - 12€</button>
+      <!-- Arepas -->
+      <button class="product-btn" onclick="addProduct('Arepa Queso Llanero', 6)">Arepa Queso - 6€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Carne Mechada', 7)">Arepa Mechada - 7€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Reina Pepiada', 7)">Arepa Reina - 7€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Cochino Frito', 7)">Arepa Cochino - 7€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Caraotas con Queso', 7)">Arepa Caraotas - 7€</button>
+      <button class="product-btn" onclick="addProduct('Arepa La Española', 8)">Arepa Española - 8€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Lo mejor de dos mundos', 8)">Arepa 2 mundos - 8€</button>
+      <button class="product-btn" onclick="addProduct('Arepa Trimagnetica', 10)">Arepa Trimagnetica - 10€</button>
+      <!-- Perritos -->
+      <button class="product-btn" onclick="addProduct('Perrito Clásico', 3)">Perrito Clásico - 3€</button>
+      <button class="product-btn" onclick="addProduct('Perrito Especial Venezolano', 5)">Perrito Venezolano - 5€</button>
+      <button class="product-btn" onclick="addProduct('Perrito Échale Carne', 7)">Perrito Carne - 7€</button>
+      <!-- Postres y bebidas -->
+      <button class="product-btn" onclick="addProduct('Quesillo', 5)">Quesillo - 5€</button>
+      <button class="product-btn" onclick="addProduct('Tres leches', 6)">Tres leches - 6€</button>
+      <button class="product-btn" onclick="addProduct('Chicha', 4)">Chicha - 4€</button>
+      <!-- Complemento -->
+      <button class="product-btn" onclick="addProduct('Complemento', 1)">Complemento - 1€</button>
+    </div>
   </div>
 
   <div id="total">Total: 0€</div>
