@@ -226,7 +226,7 @@
                 <div class="section-title"><strong>OFERTA ESPECIAL JUEVES UNIVERSITARIO</strong></div>
         <div class="button-grid" id="menu">
          <button class="product-btn btn-neon-green" onclick="addProduct('Copa normal', 6)">Copa normal - 6€</button>  
-            <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal', 3)">Caña normal - 2€</button>
+            <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal', 2)">Caña normal - 2€</button>
             </div>
       </div>
 
@@ -308,7 +308,7 @@
     function openRawbt(text) {
       const encoded = encodeURIComponent(text);
       // usando rawbt:// (si prefieres intent: por Android puedes cambiar aquí)
-      window.location.href = `rawbt://print?text=${encoded}`;
+      window.location.href = `rawbt:=${encoded}`;
     }
 
     function resetTickets() {
