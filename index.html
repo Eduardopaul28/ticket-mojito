@@ -4,8 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>La Perla del Caribe</title>
-
-  <!-- Tip: puedes reemplazar el icono/logo por la imagen que subiste -->
   <style>
     :root{
       --bg-1: #05020a;
@@ -137,7 +135,7 @@
     .ticket h2 { margin:0 0 8px 0; font-size:1rem; color:var(--neon-orange); text-shadow:0 4px 18px rgba(255,159,28,0.06); }
 
     #ticket-lists { font-family:monospace; white-space:pre-wrap; color:#e6eef6; margin-bottom:8px; min-height:120px; font-size:1rem; }
-    #total { font-size:1.15rem; font-weight:800; color:var(--neon-green); margin-bottom:8px; }
+    #total { font-size:1.0rem; font-weight:700; color:var(--neon-green); margin-bottom:8px; }
 
     .remove-item { background:none; border: none; color: #ff9fb3; cursor:pointer; font-weight:bold; margin-left:8px; }
 
@@ -179,7 +177,7 @@
   <div class="app">
     <header class="app-header">
       <div class="logo">
-        <!-- Usa tu imagen: si el nombre es distinto cambia el src -->
+        <!-- Reemplaza src.jpg por tu logo si quieres -->
         <img src="src.jpg" alt="La Perla logo" />
       </div>
       <div class="title">
@@ -192,42 +190,35 @@
       <div class="panel">
         <div class="section-title"><strong>Menú La Perla Pub</strong></div>
 
-        <div class="button-grid" id="menu">
-          <!-- Copas (verde/cyan theme) -->
-          <button class="product-btn btn-neon-green" onclick="addProduct('Copa normal', 8)">Copa normal - 8€</button>
-          <button class="product-btn btn-neon-green" onclick="addProduct('Copa premium', 10)">Copa premium - 10€</button>
+        <div class="button-grid" id="menuMain">
+          <button class="product-btn btn-neon-green" onclick="addProduct('Copa normal', 8.00)">Copa normal - 8,00€</button>
+          <button class="product-btn btn-neon-green" onclick="addProduct('Copa premium', 10.00)">Copa premium - 10,00€</button>
 
-          <!-- Suplemento manual -->
           <button class="product-btn btn-neon-green" onclick="addProduct('Redbull +1', 1.00)">Redbull +1€ - 1,00€</button>
 
-          <!-- Cócteles -->
-          <button class="product-btn btn-neon-green" onclick="addProduct('Cóctel', 8)">Cóctel - 8€</button>
-          <button class="product-btn btn-neon-green" onclick="addProduct('Mojito con botella de Jäger', 10)">Mojito + Jäger - 10€</button>
+          <button class="product-btn btn-neon-green" onclick="addProduct('Cóctel', 8.00)">Cóctel - 8,00€</button>
+          <button class="product-btn btn-neon-green" onclick="addProduct('Mojito con botella de Jäger', 10.00)">Mojito + Jäger - 10,00€</button>
 
-          <!-- Cervezas -->
           <button class="product-btn btn-neon-cyan" onclick="addProduct('Cerveza tercio normal', 3.50)">Cerveza tercio normal - 3,50€</button>
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Cerveza tercio 1906', 4)">Cerveza tercio 1906 - 4€</button>
+          <button class="product-btn btn-neon-cyan" onclick="addProduct('Cerveza tercio 1906', 4.00)">Cerveza tercio 1906 - 4,00€</button>
           <button class="product-btn btn-neon-cyan" onclick="addProduct('Tercios importadas', 4.50)">Tercios importadas - 4,50€</button>
 
-          <!-- Cañas -->
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal', 3)">Caña normal - 3€</button>
+          <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal', 3.00)">Caña normal - 3,00€</button>
           <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña 1906', 3.50)">Caña 1906 - 3,50€</button>
 
-          <!-- Refrescos / bebidas -->
-          <button class="product-btn btn-neon-orange" onclick="addProduct('Refresco', 3)">Refresco - 3€</button>
+          <button class="product-btn btn-neon-orange" onclick="addProduct('Refresco', 3.00)">Refresco - 3,00€</button>
           <button class="product-btn btn-neon-orange" onclick="addProduct('Redbull', 3.50)">Redbull - 3,50€</button>
           <button class="product-btn btn-neon-orange" onclick="addProduct('Agua', 2.50)">Agua - 2,50€</button>
 
-          <!-- Chupito & Cubo -->
-          <button class="product-btn btn-neon-pink" onclick="addProduct('Chupito', 3)">Chupito - 3€</button>
-          <button class="product-btn btn-neon-pink" onclick="addProduct('Cubo', 15)">Cubo - 15€</button>
+          <button class="product-btn btn-neon-pink" onclick="addProduct('Chupito', 3.00)">Chupito - 3,00€</button>
+          <button class="product-btn btn-neon-pink" onclick="addProduct('Cubo', 15.00)">Cubo - 15,00€</button>
         </div>
        <br>
-                <div class="section-title"><strong>OFERTA ESPECIAL JUEVES UNIVERSITARIO</strong></div>
-        <div class="button-grid" id="menu">
-         <button class="product-btn btn-neon-green" onclick="addProduct('Copa normal', 6)">Copa normal - 6€</button>  
-            <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal', 2)">Caña normal - 2€</button>
-            </div>
+        <div class="section-title"><strong>OFERTA ESPECIAL JUEVES UNIVERSITARIO</strong></div>
+        <div class="button-grid" id="menuOffer">
+          <button class="product-btn btn-neon-green" onclick="addProduct('Copa normal (Promo Jue)', 6.00)">Copa normal - 6,00€</button>
+          <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal (Promo Jue)', 2.00)">Caña normal - 2,00€</button>
+        </div>
       </div>
 
       <!-- TICKET -->
@@ -238,14 +229,15 @@
 
         <div style="margin-bottom:8px;">
           <label class="small">Pago cliente (€)</label>
-          <input type="number" id="pagoCliente" placeholder="50" oninput="calcularCambio()" />
+          <input type="number" id="pagoCliente" placeholder="50,00" oninput="calcularCambio()" step="0.01" />
           <div id="cambio" class="small" style="margin-top:6px;color:var(--neon-green);font-weight:700;"></div>
         </div>
 
         <div class="controls">
           <div class="row">
-            <button id="print" class="big-btn" onclick="printTickets()">Imprimir (RAWBT)</button>
-            <button id="reset" class="big-btn" onclick="resetTickets()" style="background:linear-gradient(180deg,var(--neon-pink),#ff1f8f);">Reiniciar</button>
+            <button id="print" class="big-btn" onclick="printTickets()">Imprimir (RAWBT / alternativa)</button>
+            <button id="copy" class="big-btn" onclick="copyTicketText()">Copiar ticket</button>
+            <button id="reset" class="big-btn" onclick="resetTickets()">Reiniciar</button>
           </div>
         </div>
       </aside>
@@ -253,83 +245,194 @@
   </div>
 
   <script>
-    // Funcionalidad idéntica a la que tenías; solo adaptada a este layout.
+    // ---------------------------
+    // Configuración
+    // ---------------------------
+    const IVA_RATE = 0.21; // Cambia aquí si tu IVA no es 21% (ej: 0.10 para 10%)
+
+    // Datos del ticket
     let ticket = [];
 
+    // formateo euros ES
+    function fmt(eur){
+      // Aseguramos número
+      const n = Number(eur) || 0;
+      return n.toLocaleString('es-ES', {minimumFractionDigits:2, maximumFractionDigits:2});
+    }
+
+    // Añadir producto
     function addProduct(name, price) {
+      price = parseFloat(price) || 0;
       const existing = ticket.find(p => p.name === name);
       if (existing) existing.qty++;
       else ticket.push({name, price, qty: 1});
       updateDisplay();
+      calcularCambio();
     }
 
+    // Quitar producto (disminuye qty o lo elimina)
     function removeProduct(name) {
       const idx = ticket.findIndex(p => p.name === name);
       if (idx === -1) return;
       if (ticket[idx].qty > 1) ticket[idx].qty--;
       else ticket.splice(idx,1);
       updateDisplay();
+      calcularCambio();
     }
 
+    // Actualizar visual del ticket (lista + desgloses)
     function updateDisplay() {
       const total = ticket.reduce((s,p) => s + p.price * p.qty, 0);
-      const lists = ticket.map(p => `${p.name} x${p.qty} - ${(p.price * p.qty).toFixed(2)}€`).join('\\n');
-      document.getElementById('ticket-lists').textContent = lists || '(aún no hay productos)';
-      document.getElementById('total').textContent = `Total: ${total.toFixed(2)}€`;
 
-      // attach remove buttons (we keep monospace area but attach controls via simple HTML insertion)
-      if (ticket.length){
-        // build with remove buttons visible inline using textContent + small buttons injection
-        // simpler: build HTML string (safe because product names come from code)
+      // Desglosamos base imponible e IVA (precios incluyen IVA)
+      const base = total / (1 + IVA_RATE);
+      const iva = total - base;
+
+      if (ticket.length === 0){
+        document.getElementById('ticket-lists').textContent = '(aún no hay productos)';
+      } else {
+        // cada producto en su propia línea
         let html = '';
-        ticket.forEach((p, i) => {
-          html += `${p.name} x${p.qty} - ${(p.price * p.qty).toFixed(2)}€ <button class="remove-item" onclick="removeProduct('${p.name.replace(/'/g, "\\'")}')">❌</button>\\n`;
+        ticket.forEach(p => {
+          html += `<span style="font-family:monospace;">${p.name} x${p.qty} - ${fmt(p.price * p.qty)}€</span> <button class="remove-item" onclick="removeProduct('${p.name.replace(/'/g,"\\'")}')">❌</button><br>`;
         });
-        document.getElementById('ticket-lists').innerHTML = html.replace(/\\n/g,'<br>');
+        document.getElementById('ticket-lists').innerHTML = html;
+      }
+
+      // mostramos subtotal (base), IVA y total en el contenedor #total
+      document.getElementById('total').innerHTML =
+        `Base imponible: ${fmt(base)}€<br>IVA (${Math.round(IVA_RATE*100)}%): ${fmt(iva)}€<br><strong>Total: ${fmt(total)}€</strong>`;
+    }
+
+    // Construye texto de ticket con saltos de línea claros
+    function generateTicketText(items, pagoClienteVal = null, vatRate = IVA_RATE) {
+      const ahora = new Date();
+      const fecha = ahora.toLocaleString('es-ES');
+      const total = items.reduce((s,p)=> s + p.price * p.qty, 0);
+      const base = total / (1 + vatRate);
+      const iva = total - base;
+
+      let lines = [];
+      lines.push('*** La Perla del Caribe ***');
+      lines.push(`Fecha: ${fecha}`);
+      lines.push(''); // separación
+      lines.push('Productos:');
+      lines.push('-----------------------------');
+
+      items.forEach(p => {
+        const subtotal = (p.price * p.qty);
+        lines.push(`${p.name} x${p.qty}  ${fmt(subtotal)}€`);
+      });
+
+      lines.push('-----------------------------');
+      lines.push(`Base imponible: ${fmt(base)}€`);
+      lines.push(`IVA (${Math.round(vatRate*100)}%): ${fmt(iva)}€`);
+      lines.push(`TOTAL: ${fmt(total)}€`);
+
+      if (pagoClienteVal !== null && pagoClienteVal !== '') {
+        const pago = parseFloat(pagoClienteVal) || 0;
+        const cambio = pago - total;
+        lines.push(`Pago: ${fmt(pago)}€`);
+        lines.push(`Cambio: ${fmt(cambio)}€`);
+      }
+
+      lines.push('');
+      lines.push('Gracias por su visita!');
+      return lines.join('\n');
+    }
+
+    // Seguridad: escapar HTML para fallback window
+    function escapeHtml(unsafe) {
+      return String(unsafe).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    }
+
+    // Copiar texto al portapapeles (con fallback)
+    function copyToClipboard(txt){
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(txt);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch(e){ console.warn('copy fallback failed', e); }
+        ta.remove();
+        return Promise.resolve();
       }
     }
 
-    function generateTicketText(items, subtotal) {
-      const fecha = new Date().toLocaleString('es-ES');
-      let text = `La Perla del Caribe`;
-      items.forEach(p => text += `${p.name} x${p.qty} - ${(p.price * p.qty).toFixed(2)}€`)
-      return text;
+    // Copiar desde UI
+    function copyTicketText(){
+      if (ticket.length === 0){ alert('No hay productos en el ticket.'); return; }
+      const pagoVal = document.getElementById('pagoCliente').value || null;
+      const text = generateTicketText(ticket, pagoVal);
+      copyToClipboard(text).then(()=> alert('Ticket copiado al portapapeles.'));
     }
 
-    function printTickets() {
-      if (ticket.length === 0) { alert('No hay productos seleccionados.'); return; }
-      const total = ticket.reduce((s,p) => s + p.price * p.qty, 0);
-      const text = generateTicketText(ticket, total);
-      openRawbt(text);
-      // opcional: podrías guardar historial localStorage aquí
-    }
-
+    // Intentar mandar a RAWBT con varios fallbacks
     function openRawbt(text) {
       const encoded = encodeURIComponent(text);
-      // usando rawbt:// (si prefieres intent: por Android puedes cambiar aquí)
-      window.location.href = `rawbt:=${encoded}`;
+
+      const candidates = [
+        `rawbt:${encoded}`,
+        `rawbt:=${encoded}`,
+        `rawbt://print?text=${encoded}`,
+        `rawbt://?text=${encoded}`
+      ];
+
+      // Intentamos redirigir al protocolo. Si no funciona, fallback a nueva ventana o copia
+      for (let i = 0; i < candidates.length; i++){
+        try {
+          window.location.href = candidates[i];
+          return;
+        } catch(e){
+          /* seguir */
+        }
+      }
+
+      // fallback: abrir nueva ventana con <pre> para preservar saltos de línea
+      const w = window.open('', '_blank');
+      if (w){
+        w.document.write('<pre style="font-family:monospace;padding:12px;">' + escapeHtml(text) + '</pre>');
+        w.document.title = 'Ticket — copiar/pegar';
+      } else {
+        // si popup bloqueado, copiamos al portapapeles
+        copyToClipboard(text);
+        alert('Texto de ticket copiado al portapapeles (fallback).');
+      }
     }
 
-    function resetTickets() {
-      if (!confirm('Reiniciar ticket actual?')) return;
+    // Imprimir botón: genera texto y llama al openRawbt
+    function printTickets(){
+      if (ticket.length === 0) { alert('No hay productos seleccionados.'); return; }
+      const pagoVal = document.getElementById('pagoCliente').value || null;
+      const text = generateTicketText(ticket, pagoVal);
+      openRawbt(text);
+    }
+
+    // Reiniciar ticket
+    function resetTickets(){
+      if (!confirm('¿Reiniciar ticket actual?')) return;
       ticket = [];
-      document.getElementById('pagoCliente').value='';
-      document.getElementById('cambio').textContent='';
+      document.getElementById('pagoCliente').value = '';
+      document.getElementById('cambio').textContent = '';
       updateDisplay();
     }
 
-    function calcularCambio() {
-      const pago = parseFloat(document.getElementById('pagoCliente').value);
+    // Calcular y mostrar cambio (usa total con IVA incluido)
+    function calcularCambio(){
+      const pagoStr = document.getElementById('pagoCliente').value;
+      const pago = parseFloat(pagoStr);
       const total = ticket.reduce((s,p) => s + p.price * p.qty, 0);
       const div = document.getElementById('cambio');
-      if (!isNaN(pago)) {
+      if (!isNaN(pago)){
         const cambio = pago - total;
-        if (cambio < 0) { div.textContent = `Faltan ${Math.abs(cambio).toFixed(2)}€`; div.style.color='salmon'; }
-        else { div.textContent = `Cambio: ${cambio.toFixed(2)}€`; div.style.color='var(--neon-green)'; }
-      } else div.textContent='';
+        if (cambio < 0) { div.textContent = `Faltan ${fmt(Math.abs(cambio))}€`; div.style.color='salmon'; }
+        else { div.textContent = `Cambio: ${fmt(cambio)}€`; div.style.color='var(--neon-green)'; }
+      } else div.textContent = '';
     }
 
-    // init
+    // Inicializar visual
     updateDisplay();
   </script>
 </body>
