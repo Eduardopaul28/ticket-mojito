@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>La Perla del Caribe</title>
+  <title>La Perla del Caribe - TPV</title>
   <style>
     :root{
       --bg-1: #05020a;
@@ -11,267 +11,132 @@
       --neon-cyan: #1fe6ff;
       --neon-orange: #ff9f1c;
       --neon-green: #23ff88;
-      --card: rgba(255,255,255,0.04);
-      --glass: rgba(255,255,255,0.03);
       --muted: #cbd5e1;
-      --accent: var(--neon-pink);
     }
-
-    html,body{
-      height:100%;
-      margin:0;
-      background: radial-gradient(ellipse at 10% 10%, rgba(31,230,255,0.06), transparent 10%),
-                  radial-gradient(ellipse at 90% 80%, rgba(255,47,166,0.04), transparent 10%),
-                  linear-gradient(180deg,#02030a 0%, #07060b 100%);
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      color: #f6f7fb;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      justify-content:center;
-      padding:1rem;
-    }
-
-    .app {
-      width:100%;
-      max-width:760px;
-    }
-
-    header.app-header{
-      display:flex;
-      align-items:center;
-      gap:1rem;
-      margin-bottom:0.8rem;
-    }
-    .logo {
-      width:84px;
-      height:84px;
-      border-radius:14px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 18px rgba(31,230,255,0.06) inset;
-      overflow:hidden;
-      border: 2px solid rgba(255,255,255,0.04);
-    }
-    .logo img { width:100%; height:100%; object-fit:cover; filter: saturate(1.05) contrast(1.02); }
-
-    .title {
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-    h1{
-      margin:0;
-      font-size:1.25rem;
-      letter-spacing:0.6px;
-      text-shadow: 0 2px 12px rgba(31,230,255,0.08);
-    }
-    .subtitle{
-      font-size:0.9rem;
-      color:var(--muted);
-    }
-
-    /* layout */
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:1rem;
-      align-items:start;
-    }
-
-    /* Left: menu */
-    .panel {
-      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px;
-      padding:12px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .section-title{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:8px;
-    }
-    .section-title strong{ font-size:1rem; color:var(--neon-cyan); text-shadow: 0 4px 20px rgba(31,230,255,0.06); }
-
-    .button-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:0.5rem;
-    }
-
-    .product-btn{
-      padding:14px;
-      border-radius:10px;
-      border:none;
-      cursor:pointer;
-      font-weight:700;
-      font-size:1rem;
-      color: #06060b;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-      transition: transform .08s ease, box-shadow .12s ease;
-      user-select:none;
-    }
-    .product-btn:active { transform: translateY(1px) scale(.998); }
-
-    /* Colors inspired by the neon image */
-    .btn-neon-pink { background: linear-gradient(180deg, var(--neon-pink), #ff1f8f); color: #050005; }
-    .btn-neon-cyan { background: linear-gradient(180deg, var(--neon-cyan), #00c8e6); color:#031018; }
-    .btn-neon-orange { background: linear-gradient(180deg, var(--neon-orange), #ff7a1f); color:#170600; }
-    .btn-neon-green { background: linear-gradient(180deg, var(--neon-green), #0fe66d); color:#051107; }
-
-    /* right column: ticket */
-    .ticket {
-      border-radius:12px;
-      padding:12px;
-      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(255,255,255,0.02));
-      border:1px solid rgba(255,255,255,0.03);
-      position:relative;
-    }
-    .ticket h2 { margin:0 0 8px 0; font-size:1rem; color:var(--neon-orange); text-shadow:0 4px 18px rgba(255,159,28,0.06); }
-
-    #ticket-lists { font-family:monospace; white-space:pre-wrap; color:#e6eef6; margin-bottom:8px; min-height:120px; font-size:1rem; }
-    #total { font-size:1.0rem; font-weight:700; color:var(--neon-green); margin-bottom:8px; }
-
-    .remove-item { background:none; border: none; color: #ff9fb3; cursor:pointer; font-weight:bold; margin-left:8px; }
-
-    .controls { display:flex; gap:8px; flex-direction:column; }
-    .controls .row { display:flex; gap:8px; }
-
-    .big-btn {
-      padding: 12px 14px;
-      border-radius:10px;
-      border:none;
-      font-weight:800;
-      cursor:pointer;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.5);
-    }
-    #print { background:linear-gradient(180deg,var(--neon-cyan),#00a9d6); color:#001216; }
-    #reset { background:linear-gradient(180deg,var(--neon-pink),#ff1f8f); color:#120010; }
-
-    input[type="number"]{
-      width:100%;
-      padding:10px;
-      border-radius:8px;
-      border:1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.02);
-      color: #eaf6ff;
-      font-size:1rem;
-    }
-
-    .small { font-size:0.85rem; color:var(--muted); }
-
-    /* responsive */
-    @media (max-width:880px){
-      .grid{ grid-template-columns: 1fr; }
-      .ticket { order:2; margin-top:0.6rem; }
-    }
-
+    html,body{height:100%;margin:0;background:radial-gradient(ellipse at 10% 10%, rgba(31,230,255,0.06), transparent 10%), radial-gradient(ellipse at 90% 80%, rgba(255,47,166,0.04), transparent 10%), linear-gradient(180deg,#02030a 0%, #07060b 100%);font-family:"Segoe UI", Roboto, Arial, sans-serif;color:#f6f7fb;display:flex;justify-content:center;padding:1rem;}
+    .app{width:100%;max-width:980px;}
+    header.app-header{display:flex;align-items:center;gap:1rem;margin-bottom:0.6rem;}
+    .logo{width:70px;height:70px;border-radius:12px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(255,255,255,0.04);}
+    .logo img{width:100%;height:100%;object-fit:cover;}
+    h1{margin:0;font-size:1.15rem;}
+    .grid{display:grid;grid-template-columns:1fr 420px;gap:1rem;align-items:start;}
+    .panel{background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:12px;box-shadow:0 6px 24px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03);}
+    .button-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;}
+    .product-btn{padding:12px;border-radius:8px;border:none;cursor:pointer;font-weight:700;font-size:0.98rem;color:#06060b;box-shadow:0 6px 18px rgba(0,0,0,0.45);}
+    .btn-neon-green{background:linear-gradient(180deg,#23ff88,#0fe66d);} .btn-neon-cyan{background:linear-gradient(180deg,#1fe6ff,#00c8e6);} .btn-neon-orange{background:linear-gradient(180deg,#ff9f1c,#ff7a1f);} .btn-neon-pink{background:linear-gradient(180deg,#ff2fa6,#ff1f8f);}
+    .ticket{border-radius:12px;padding:12px;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.03);}
+    #ticket-lists{font-family:monospace;white-space:pre-wrap;color:#e6eef6;margin-bottom:8px;min-height:110px;font-size:0.98rem;}
+    #total{font-size:0.95rem;font-weight:700;color:var(--neon-green);margin-bottom:8px;}
+    .controls .row{display:flex;gap:8px;}
+    .big-btn{padding:10px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700;}
+    #print{background:linear-gradient(180deg,var(--neon-cyan),#00a9d6);color:#001216;}
+    #copy{background:linear-gradient(180deg,var(--neon-pink),#ff1f8f);color:#100;}
+    #export{background:linear-gradient(180deg,var(--neon-green),#0fbf6d);color:#051;}
+    .small{font-size:0.85rem;color:var(--muted);}
+    /* Historial styles */
+    .history { margin-top:12px; max-height:300px; overflow:auto; background: rgba(255,255,255,0.02); padding:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.03); }
+    table.history-table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+    table.history-table th, table.history-table td{padding:6px;border-bottom:1px dashed rgba(255,255,255,0.03); text-align:left; vertical-align:top;}
+    .muted{color:var(--muted); font-size:0.85rem;}
+    .action-btn{padding:6px 8px;border-radius:6px;border:none;cursor:pointer;font-weight:700;}
+    .del{background:transparent;color:#ff7a9a;}
+    .clear{background:transparent;color:#ffb86b;}
+    @media(max-width:920px){.grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
   <div class="app">
     <header class="app-header">
-      <div class="logo">
-        <!-- Reemplaza src.jpg por tu logo si quieres -->
-        <img src="src.jpg" alt="La Perla logo" />
-      </div>
-      <div class="title">
-        <h1>La Perla del Caribe Coctelería</h1>
-      </div>
+      <div class="logo"><img src="src.jpg" alt="logo" /></div>
+      <div><h1>La Perla del Caribe — TPV</h1><div class="muted">Guarda tickets localmente y exporta a Excel</div></div>
     </header>
 
     <main class="grid">
-      <!-- MENU -->
+      <!-- Menu -->
       <div class="panel">
-        <div class="section-title"><strong>Menú La Perla Pub</strong></div>
-
+        <div style="margin-bottom:8px;"><strong>Menú</strong></div>
         <div class="button-grid" id="menuMain">
           <button class="product-btn btn-neon-green" onclick="addProduct('Copa normal', 8.00)">Copa normal - 8,00€</button>
           <button class="product-btn btn-neon-green" onclick="addProduct('Copa premium', 10.00)">Copa premium - 10,00€</button>
-
-          <button class="product-btn btn-neon-green" onclick="addProduct('Redbull +1', 1.00)">Redbull +1€ - 1,00€</button>
-
+          <button class="product-btn btn-neon-green" onclick="addProduct('Redbull +1', 1.00)">Redbull +1 - 1,00€</button>
           <button class="product-btn btn-neon-green" onclick="addProduct('Cóctel', 8.00)">Cóctel - 8,00€</button>
-          <button class="product-btn btn-neon-green" onclick="addProduct('Mojito con botella de Jäger', 10.00)">Mojito + Jäger - 10,00€</button>
-
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Cerveza tercio normal', 3.50)">Cerveza tercio normal - 3,50€</button>
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Cerveza tercio 1906', 4.00)">Cerveza tercio 1906 - 4,00€</button>
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Tercios importadas', 4.50)">Tercios importadas - 4,50€</button>
-
+          <button class="product-btn btn-neon-cyan" onclick="addProduct('Cerveza tercio normal', 3.50)">Tercio normal - 3,50€</button>
           <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal', 3.00)">Caña normal - 3,00€</button>
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña 1906', 3.50)">Caña 1906 - 3,50€</button>
-
           <button class="product-btn btn-neon-orange" onclick="addProduct('Refresco', 3.00)">Refresco - 3,00€</button>
-          <button class="product-btn btn-neon-orange" onclick="addProduct('Redbull', 3.50)">Redbull - 3,50€</button>
-          <button class="product-btn btn-neon-orange" onclick="addProduct('Agua', 2.50)">Agua - 2,50€</button>
-
           <button class="product-btn btn-neon-pink" onclick="addProduct('Chupito', 3.00)">Chupito - 3,00€</button>
           <button class="product-btn btn-neon-pink" onclick="addProduct('Cubo', 15.00)">Cubo - 15,00€</button>
         </div>
-       <br>
-        <div class="section-title"><strong>OFERTA ESPECIAL JUEVES UNIVERSITARIO</strong></div>
-        <div class="button-grid" id="menuOffer">
-          <button class="product-btn btn-neon-green" onclick="addProduct('Copa normal (Promo Jue)', 6.00)">Copa normal - 6,00€</button>
-          <button class="product-btn btn-neon-cyan" onclick="addProduct('Caña normal (Promo Jue)', 2.00)">Caña normal - 2,00€</button>
+        <br>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:140px;">
+            <label class="small">Pago cliente (€)</label>
+            <input type="number" id="pagoCliente" placeholder="50,00" oninput="calcularCambio()" step="0.01" style="width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:#eaf6ff;">
+          </div>
+        </div>
+
+        <div class="history">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <strong>Historial de tickets</strong>
+            <div>
+              <button class="action-btn clear" onclick="clearHistoryConfirm()">Limpiar historial</button>
+              <button class="action-btn" onclick="exportHistoryCSV()">Exportar CSV</button>
+              <button class="action-btn" onclick="downloadHistoryJSON()">Descargar JSON</button>
+            </div>
+          </div>
+          <div id="historyContainer">
+            <!-- tabla se renderiza por JS -->
+          </div>
         </div>
       </div>
 
-      <!-- TICKET -->
-      <aside class="ticket">
+      <!-- Ticket -->
+      <aside class="ticket panel">
         <h2>Ticket</h2>
         <div id="ticket-lists">(aún no hay productos)</div>
         <div id="total">Total: 0,00€</div>
-
-        <div style="margin-bottom:8px;">
-          <label class="small">Pago cliente (€)</label>
-          <input type="number" id="pagoCliente" placeholder="50,00" oninput="calcularCambio()" step="0.01" />
-          <div id="cambio" class="small" style="margin-top:6px;color:var(--neon-green);font-weight:700;"></div>
-        </div>
+        <div id="cambio" class="small" style="margin-bottom:8px;color:var(--neon-green);font-weight:700;"></div>
 
         <div class="controls">
-          <div class="row">
-            <button id="print" class="big-btn" onclick="printTickets()">Imprimir (RAWBT / alternativa)</button>
-            <button id="copy" class="big-btn" onclick="copyTicketText()">Copiar ticket</button>
-            <button id="reset" class="big-btn" onclick="resetTickets()">Reiniciar</button>
+          <div class="row" style="margin-bottom:8px;">
+            <button id="print" class="big-btn" onclick="onPrintClick()">Imprimir & Guardar</button>
+            <button id="copy" class="big-btn" onclick="copyTicketText()">Copiar</button>
           </div>
+        </div>
+
+        <div class="muted" style="margin-top:8px;font-size:0.85rem;">
+          Cada vez que pulses <strong>Imprimir & Guardar</strong> el ticket se almacenará en el historial (almacenamiento local del navegador).
         </div>
       </aside>
     </main>
   </div>
 
   <script>
-    // ---------------------------
-    // Configuración
-    // ---------------------------
-    const IVA_RATE = 0.21; // Cambia aquí si tu IVA no es 21% (ej: 0.10 para 10%)
+    /* -----------------------------------------
+       Configuración y utilidades
+       ----------------------------------------- */
+    const IVA_RATE = 0.21;                      // modificar si tu IVA es distinto
+    const HISTORY_KEY = 'lp_ticket_history_v1'; // clave localStorage (versionable)
 
-    // Datos del ticket
     let ticket = [];
 
-    // formateo euros ES
     function fmt(eur){
-      // Aseguramos número
       const n = Number(eur) || 0;
       return n.toLocaleString('es-ES', {minimumFractionDigits:2, maximumFractionDigits:2});
     }
 
-    // Añadir producto
-    function addProduct(name, price) {
+    /* -----------------------------------------
+       Ticket: añadir/quitar/visualizar
+       ----------------------------------------- */
+    function addProduct(name, price){
       price = parseFloat(price) || 0;
       const existing = ticket.find(p => p.name === name);
       if (existing) existing.qty++;
-      else ticket.push({name, price, qty: 1});
+      else ticket.push({name, price, qty:1});
       updateDisplay();
       calcularCambio();
     }
 
-    // Quitar producto (disminuye qty o lo elimina)
-    function removeProduct(name) {
+    function removeProduct(name){
       const idx = ticket.findIndex(p => p.name === name);
       if (idx === -1) return;
       if (ticket[idx].qty > 1) ticket[idx].qty--;
@@ -280,32 +145,28 @@
       calcularCambio();
     }
 
-    // Actualizar visual del ticket (lista + desgloses)
-    function updateDisplay() {
-      const total = ticket.reduce((s,p) => s + p.price * p.qty, 0);
-
-      // Desglosamos base imponible e IVA (precios incluyen IVA)
+    function updateDisplay(){
+      const total = ticket.reduce((s,p)=> s + p.price * p.qty, 0);
       const base = total / (1 + IVA_RATE);
       const iva = total - base;
 
       if (ticket.length === 0){
         document.getElementById('ticket-lists').textContent = '(aún no hay productos)';
       } else {
-        // cada producto en su propia línea
         let html = '';
         ticket.forEach(p => {
-          html += `<span style="font-family:monospace;">${p.name} x${p.qty} - ${fmt(p.price * p.qty)}€</span> <button class="remove-item" onclick="removeProduct('${p.name.replace(/'/g,"\\'")}')">❌</button><br>`;
+          html += `<span style="font-family:monospace;">${p.name} x${p.qty} - ${fmt(p.price * p.qty)}€</span> <button class="action-btn del" onclick="removeProduct('${p.name.replace(/'/g,\"\\'\")}')">❌</button><br>`;
         });
         document.getElementById('ticket-lists').innerHTML = html;
       }
 
-      // mostramos subtotal (base), IVA y total en el contenedor #total
-      document.getElementById('total').innerHTML =
-        `Base imponible: ${fmt(base)}€<br>IVA (${Math.round(IVA_RATE*100)}%): ${fmt(iva)}€<br><strong>Total: ${fmt(total)}€</strong>`;
+      document.getElementById('total').innerHTML = `Base imponible: ${fmt(base)}€<br>IVA (${Math.round(IVA_RATE*100)}%): ${fmt(iva)}€<br><strong>Total: ${fmt(total)}€</strong>`;
     }
 
-    // Construye texto de ticket con saltos de línea claros
-    function generateTicketText(items, pagoClienteVal = null, vatRate = IVA_RATE) {
+    /* -----------------------------------------
+       Generación texto ticket (para imprimir y guardar)
+       ----------------------------------------- */
+    function generateTicketText(items, pagoClienteVal = null, vatRate = IVA_RATE){
       const ahora = new Date();
       const fecha = ahora.toLocaleString('es-ES');
       const total = items.reduce((s,p)=> s + p.price * p.qty, 0);
@@ -315,40 +176,181 @@
       let lines = [];
       lines.push('*** La Perla del Caribe ***');
       lines.push(`Fecha: ${fecha}`);
-      lines.push(''); // separación
+      lines.push('');
       lines.push('Productos:');
       lines.push('-----------------------------');
-
       items.forEach(p => {
-        const subtotal = (p.price * p.qty);
+        const subtotal = p.price * p.qty;
         lines.push(`${p.name} x${p.qty}  ${fmt(subtotal)}€`);
       });
-
       lines.push('-----------------------------');
       lines.push(`Base imponible: ${fmt(base)}€`);
       lines.push(`IVA (${Math.round(vatRate*100)}%): ${fmt(iva)}€`);
       lines.push(`TOTAL: ${fmt(total)}€`);
-
-      if (pagoClienteVal !== null && pagoClienteVal !== '') {
+      if (pagoClienteVal !== null && pagoClienteVal !== ''){
         const pago = parseFloat(pagoClienteVal) || 0;
         const cambio = pago - total;
         lines.push(`Pago: ${fmt(pago)}€`);
         lines.push(`Cambio: ${fmt(cambio)}€`);
       }
-
       lines.push('');
       lines.push('Gracias por su visita!');
       return lines.join('\n');
     }
 
-    // Seguridad: escapar HTML para fallback window
-    function escapeHtml(unsafe) {
-      return String(unsafe).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    /* -----------------------------------------
+       Historial en localStorage
+       Estructura de cada entrada:
+       { id, fechaISO, fechaLegible, items: [{name,price,qty}], itemsText, total, base, iva, pago, cambio }
+       ----------------------------------------- */
+    function getHistory(){
+      try {
+        const raw = localStorage.getItem(HISTORY_KEY);
+        if (!raw) return [];
+        return JSON.parse(raw);
+      } catch(e){
+        console.warn('Error leyendo historial', e);
+        return [];
+      }
     }
 
-    // Copiar texto al portapapeles (con fallback)
+    function saveHistory(history){
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    }
+
+    function saveTicketToHistory(items, pagoClienteVal = null){
+      const now = new Date();
+      const id = `${now.getTime()}`; // timestamp único
+      const total = items.reduce((s,p)=> s + p.price * p.qty, 0);
+      const base = total / (1 + IVA_RATE);
+      const iva = total - base;
+      const pago = (pagoClienteVal !== null && pagoClienteVal !== '') ? parseFloat(pagoClienteVal) : null;
+      const cambio = (pago !== null) ? (pago - total) : null;
+
+      // itemsText — formato compacto para CSV/tabla
+      const itemsText = items.map(p => `${p.name} x${p.qty} (${fmt(p.price)}u)`).join(' ; ');
+
+      const entry = {
+        id,
+        fechaISO: now.toISOString(),
+        fechaLegible: now.toLocaleString('es-ES'),
+        items: items.map(p => ({name: p.name, price: p.price, qty: p.qty})),
+        itemsText,
+        total: Number(total.toFixed(2)),
+        base: Number(base.toFixed(2)),
+        iva: Number(iva.toFixed(2)),
+        pago: pago !== null ? Number(pago.toFixed(2)) : null,
+        cambio: cambio !== null ? Number(cambio.toFixed(2)) : null
+      };
+
+      const history = getHistory();
+      history.unshift(entry); // añadimos al principio
+      // opcional: limitar tamaño (ej. últimos 200 tickets)
+      const MAX = 1000;
+      if (history.length > MAX) history.splice(MAX);
+      saveHistory(history);
+      renderHistory();
+      return entry;
+    }
+
+    function deleteHistoryItem(id){
+      let history = getHistory();
+      history = history.filter(h => h.id !== id);
+      saveHistory(history);
+      renderHistory();
+    }
+
+    function clearHistoryConfirm(){
+      if (!confirm('¿Borrar todo el historial de tickets? Esta acción no se puede deshacer.')) return;
+      localStorage.removeItem(HISTORY_KEY);
+      renderHistory();
+    }
+
+    /* -----------------------------------------
+       Render historial en la UI
+       ----------------------------------------- */
+    function renderHistory(){
+      const container = document.getElementById('historyContainer');
+      const history = getHistory();
+      if (!history.length){
+        container.innerHTML = '<div class="muted">No hay tickets guardados.</div>';
+        return;
+      }
+
+      let html = `<table class="history-table"><thead><tr><th>Fecha</th><th>Items</th><th>Total</th><th>Pago</th><th></th></tr></thead><tbody>`;
+      history.forEach(entry => {
+        html += `<tr>
+          <td style="white-space:nowrap;">${escapeHtml(entry.fechaLegible)}</td>
+          <td>${escapeHtml(entry.itemsText)}</td>
+          <td>${fmt(entry.total)}€</td>
+          <td>${entry.pago !== null ? fmt(entry.pago)+'€ ('+ (entry.cambio!==null?('cambio '+fmt(entry.cambio)+'€'):'') +')' : '-'}</td>
+          <td><button class="action-btn del" onclick="deleteHistoryItem('${entry.id}')">Eliminar</button></td>
+        </tr>`;
+      });
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    /* -----------------------------------------
+       Exportar CSV / JSON
+       ----------------------------------------- */
+    function exportHistoryCSV(){
+      const history = getHistory();
+      if (!history.length){ alert('No hay datos para exportar.'); return; }
+
+      // Cabeceras CSV
+      const headers = ['id','fechaISO','fechaLegible','itemsText','total','base','iva','pago','cambio'];
+      const rows = history.map(h => [
+        csvEscape(h.id),
+        csvEscape(h.fechaISO),
+        csvEscape(h.fechaLegible),
+        csvEscape(h.itemsText),
+        csvEscape(h.total),
+        csvEscape(h.base),
+        csvEscape(h.iva),
+        csvEscape(h.pago),
+        csvEscape(h.cambio)
+      ].join(','));
+
+      const csv = [headers.join(','), ...rows].join('\n');
+
+      downloadFile(csv, 'text/csv;charset=utf-8;', `lp_tickets_${(new Date()).toISOString().slice(0,10)}.csv`);
+    }
+
+    function downloadHistoryJSON(){
+      const history = getHistory();
+      if (!history.length){ alert('No hay datos para descargar.'); return; }
+      const json = JSON.stringify(history, null, 2);
+      downloadFile(json, 'application/json;charset=utf-8;', `lp_tickets_${(new Date()).toISOString().slice(0,10)}.json`);
+    }
+
+    function csvEscape(val){
+      if (val === null || val === undefined) return '';
+      const s = String(val);
+      // si contiene comas, comillas o saltos, encerramos entre comillas y escapamos comillas con doble comilla
+      if (/[,"\n\r]/.test(s)) {
+        return '"' + s.replace(/"/g,'""') + '"';
+      }
+      return s;
+    }
+
+    function downloadFile(content, mime, filename){
+      const blob = new Blob([content], {type: mime});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    /* -----------------------------------------
+       Copiar al portapapeles (fallback)
+       ----------------------------------------- */
     function copyToClipboard(txt){
-      if (navigator.clipboard && window.isSecureContext) {
+      if (navigator.clipboard && window.isSecureContext){
         return navigator.clipboard.writeText(txt);
       } else {
         const ta = document.createElement('textarea');
@@ -361,7 +363,6 @@
       }
     }
 
-    // Copiar desde UI
     function copyTicketText(){
       if (ticket.length === 0){ alert('No hay productos en el ticket.'); return; }
       const pagoVal = document.getElementById('pagoCliente').value || null;
@@ -369,71 +370,64 @@
       copyToClipboard(text).then(()=> alert('Ticket copiado al portapapeles.'));
     }
 
-    // Intentar mandar a RAWBT con varios fallbacks
-    function openRawbt(text) {
+    /* -----------------------------------------
+       Impresión (RawBT fallback) + Guardado en historial
+       ----------------------------------------- */
+    function openRawbt(text){
       const encoded = encodeURIComponent(text);
-
       const candidates = [
         `rawbt:${encoded}`,
         `rawbt:=${encoded}`,
         `rawbt://print?text=${encoded}`,
         `rawbt://?text=${encoded}`
       ];
-
-      // Intentamos redirigir al protocolo. Si no funciona, fallback a nueva ventana o copia
-      for (let i = 0; i < candidates.length; i++){
-        try {
-          window.location.href = candidates[i];
-          return;
-        } catch(e){
-          /* seguir */
-        }
+      for (let i=0;i<candidates.length;i++){
+        try { window.location.href = candidates[i]; return; } catch(e){ /* continue */ }
       }
-
-      // fallback: abrir nueva ventana con <pre> para preservar saltos de línea
+      // Si no funciona redirigir (esquema no registrado), abrimos ventana para copiar/pegar
       const w = window.open('', '_blank');
       if (w){
         w.document.write('<pre style="font-family:monospace;padding:12px;">' + escapeHtml(text) + '</pre>');
         w.document.title = 'Ticket — copiar/pegar';
       } else {
-        // si popup bloqueado, copiamos al portapapeles
         copyToClipboard(text);
         alert('Texto de ticket copiado al portapapeles (fallback).');
       }
     }
 
-    // Imprimir botón: genera texto y llama al openRawbt
-    function printTickets(){
-      if (ticket.length === 0) { alert('No hay productos seleccionados.'); return; }
+    // Al pulsar imprimir: guarda en historial y luego intenta imprimir
+    function onPrintClick(){
+      if (ticket.length === 0){ alert('No hay productos seleccionados.'); return; }
+
       const pagoVal = document.getElementById('pagoCliente').value || null;
+      // guardamos en historial
+      const entry = saveTicketToHistory(ticket, pagoVal);
+
+      // generar texto y abrir rawbt / fallback
       const text = generateTicketText(ticket, pagoVal);
       openRawbt(text);
+
+      // opcional: reiniciar ticket después de imprimir (si quieres activarlo, descomenta)
+      // ticket = []; document.getElementById('pagoCliente').value=''; updateDisplay();
     }
 
-    // Reiniciar ticket
-    function resetTickets(){
-      if (!confirm('¿Reiniciar ticket actual?')) return;
-      ticket = [];
-      document.getElementById('pagoCliente').value = '';
-      document.getElementById('cambio').textContent = '';
+    /* -----------------------------------------
+       Helpers
+       ----------------------------------------- */
+    function escapeHtml(s){
+      if (s === null || s === undefined) return '';
+      return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    }
+
+    /* -----------------------------------------
+       Inicialización
+       ----------------------------------------- */
+    function init(){
       updateDisplay();
+      renderHistory();
     }
 
-    // Calcular y mostrar cambio (usa total con IVA incluido)
-    function calcularCambio(){
-      const pagoStr = document.getElementById('pagoCliente').value;
-      const pago = parseFloat(pagoStr);
-      const total = ticket.reduce((s,p) => s + p.price * p.qty, 0);
-      const div = document.getElementById('cambio');
-      if (!isNaN(pago)){
-        const cambio = pago - total;
-        if (cambio < 0) { div.textContent = `Faltan ${fmt(Math.abs(cambio))}€`; div.style.color='salmon'; }
-        else { div.textContent = `Cambio: ${fmt(cambio)}€`; div.style.color='var(--neon-green)'; }
-      } else div.textContent = '';
-    }
-
-    // Inicializar visual
-    updateDisplay();
+    init();
   </script>
 </body>
 </html>
